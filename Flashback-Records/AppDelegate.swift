@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         
-        window.rootViewController = TabBarController()
+        //window.rootViewController = TabBarController()
+        window.rootViewController = SplashScreenViewController()
         window.makeKeyAndVisible()
         self.window = window
         
