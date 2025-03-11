@@ -18,9 +18,10 @@ class SplashScreenViewController: UIViewController {
         let controller = UIHostingController(rootView: SplashView())
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
+            controller.rootView.splashDelegate = self
             view.addSubview(controller.view)
             controller.didMove(toParent: self)
-
+        
             NSLayoutConstraint.activate([
                 controller.view.widthAnchor.constraint(equalTo: view.widthAnchor),
                 controller.view.heightAnchor.constraint(equalTo: view.heightAnchor),
@@ -28,4 +29,15 @@ class SplashScreenViewController: UIViewController {
                 controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
     }
+    
+}
+
+extension SplashScreenViewController: SplashScreenDelegate {
+    
+    func didFinishSplash() {
+        let newController = TabBarController()
+        newController.modalPresentationStyle = .fullScreen
+        present(newController, animated: true)
+    }
+    
 }
