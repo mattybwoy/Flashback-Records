@@ -7,18 +7,30 @@
 import UIKit
 import SwiftUI
 
-class SplashScreenViewController: UIViewController {
+class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
+    
+    private var splashScreenView: T
+    
+    init(view: T) {
+        self.splashScreenView = view
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.splashScreenView.splashDelegate = self
         setupSplashView()
     }
     
-    func setupSplashView() {
-        let controller = UIHostingController(rootView: SplashView())
+    private func setupSplashView() {
+        let controller = UIHostingController(rootView: splashScreenView.splashScreenView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
-            controller.rootView.splashDelegate = self
             view.addSubview(controller.view)
             controller.didMove(toParent: self)
         

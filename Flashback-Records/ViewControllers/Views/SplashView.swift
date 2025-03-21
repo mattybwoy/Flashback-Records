@@ -11,9 +11,13 @@ protocol SplashScreenDelegate: AnyObject {
     func didFinishSplash()
 }
 
-struct SplashView: View {
+struct SplashView: View, SplashScreenInterface {
     
-    weak var splashDelegate: (SplashScreenDelegate)?
+    weak var splashDelegate: SplashScreenDelegate?
+    
+    var splashScreenView: some View {
+        self
+    }
     
     @State private var isAnimating: Bool = false
     
@@ -31,8 +35,13 @@ struct SplashView: View {
                         isAnimating = true
                     }
                 }
-                
             }
     }
     
+}
+
+protocol SplashScreenInterface {
+    associatedtype ViewType: View
+    var splashScreenView: ViewType { get }
+    var splashDelegate: SplashScreenDelegate? { get set }
 }
