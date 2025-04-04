@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+protocol SplashScreenInterface {
+    associatedtype ViewType: View
+    var splashScreenView: ViewType { get }
+    var splashDelegate: SplashScreenDelegate? { get set }
+}
+
 protocol SplashScreenDelegate: AnyObject {
     func didFinishSplash()
 }
@@ -38,10 +44,4 @@ struct SplashView: View, SplashScreenInterface {
             }
     }
     
-}
-
-protocol SplashScreenInterface {
-    associatedtype ViewType: View
-    var splashScreenView: ViewType { get }
-    var splashDelegate: SplashScreenDelegate? { get set }
 }
