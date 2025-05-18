@@ -4,7 +4,7 @@
 //
 //  Created by Matthew Lock on 25/03/2025.
 //
-import Foundation
+import NavigateCoordinator
 import UIKit
 
 final class PrimaryNavigator: Navigator {
@@ -15,17 +15,17 @@ final class PrimaryNavigator: Navigator {
         self.window = window
     }
     
-    func navigate(to viewController: UIViewController, transition: Transition) {
+    func navigate(to viewController: NavigateCoordinator.ViewController, transition: NavigateCoordinator.Transition) {
         window.rootViewController = viewController
         window.makeKeyAndVisible()
     }
     
-    func exitFlow(coordinator: any Coordinator, animated: Bool) {
+    func exitFlow(coordinator: any NavigateCoordinator.Coordinator, animated: Bool) {
         fatalError("shouldn't exit")
     }
     
     func dismiss(animated: Bool) {
-        fatalError("shouldn't dimsiss")
+        fatalError("shouldn't dismiss")
     }
     
     func popToRootViewController(animated: Bool) {
@@ -36,7 +36,7 @@ final class PrimaryNavigator: Navigator {
         fatalError("shouldn't pop")
     }
     
-    func popToViewController(_ viewController: UIViewController, animated: Bool) {
+    func popToViewController(_ viewController: NavigateCoordinator.ViewController, animated: Bool) {
         fatalError("shouldn't pop to root")
     }
     
