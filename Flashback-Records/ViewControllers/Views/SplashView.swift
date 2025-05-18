@@ -10,16 +10,15 @@ import SwiftUI
 protocol SplashScreenInterface {
     associatedtype ViewType: View
     var splashScreenView: ViewType { get }
-    var splashDelegate: SplashScreenDelegate? { get set }
+    //var splashDelegate: SplashScreenDelegate? { get set }
 }
 
-protocol SplashScreenDelegate: AnyObject {
-    func didFinishSplash()
-}
+//protocol SplashScreenDelegate: AnyObject {
+//    func didFinishSplash()
+//}
 
-struct SplashView: View, SplashScreenInterface {
-    
-    weak var splashDelegate: SplashScreenDelegate?
+struct SplashView: View, SplashScreenInterface, SplashScreenViewModel {
+    //weak var splashDelegate: SplashScreenDelegate?
     
     var splashScreenView: some View {
         self
@@ -34,7 +33,8 @@ struct SplashView: View, SplashScreenInterface {
             .rotationEffect(Angle(degrees: isAnimating ? 360 : 0), anchor: .center)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                    splashDelegate?.didFinishSplash()
+                    //splashDelegate?.didFinishSplash()
+                    viewModel.navigateToHomeTabBar()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     withAnimation(.linear(duration: 3).repeatForever(autoreverses: false)) {

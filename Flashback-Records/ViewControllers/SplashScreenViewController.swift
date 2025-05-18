@@ -10,9 +10,11 @@ import SwiftUI
 class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
     
     private var splashScreenView: T
+    private let viewModel: SplashScreenViewModel
     
-    init(view: T) {
+    init(view: T, viewModel: SplashScreenViewModel) {
         self.splashScreenView = view
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -22,7 +24,7 @@ class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.splashScreenView.splashDelegate = self
+        //self.splashScreenView.splashDelegate = self
         setupSplashView()
     }
     
@@ -43,12 +45,12 @@ class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
     
 }
 
-extension SplashScreenViewController: SplashScreenDelegate {
-    
-    func didFinishSplash() {
-        let newController = TabBarController()
-        newController.modalPresentationStyle = .fullScreen
-        present(newController, animated: true)
-    }
-    
-}
+//extension SplashScreenViewController: SplashScreenDelegate {
+//    
+//    func didFinishSplash() {
+//        let newController = TabBarController()
+//        newController.modalPresentationStyle = .fullScreen
+//        present(newController, animated: true)
+//    }
+//    
+//}

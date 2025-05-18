@@ -1,0 +1,15 @@
+{
+  "originHash" : "5d527ec0bf4a8ff980d4ff81fb29db70dbdcc60af6145a27ed5b44d6ab161d43",
+  "pins" : [
+    {
+      "identity" : "navigatecoordinate",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mattybwoy/NavigateCoordinate",
+      "state" : {
+        "branch" : "main",
+        "revision" : "9fa8610881304358931e4707be865fdce2e1f900"
+      }
+    }
+  ],
+  "version" : 3
+}
