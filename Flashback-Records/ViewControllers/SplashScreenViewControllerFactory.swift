@@ -14,9 +14,9 @@ extension DependencyContainer: SplashScreenViewControllerFactory {
 
     func make(navigationDelegate: SplashScreenNavigationDelegate, onDismissed: (() -> Void)?) -> SplashScreenViewController<SplashView> {
         let splashScreenViewModel = SplashScreenViewModel(navigationDelegate: navigationDelegate)
-        let splashScreenView = SplashView()
-        let splashScreenViewController = SplashScreenViewController(view: splashScreenView, viewModel: splashScreenViewModel)
-       // splashScreenViewController.onDismissed = onDismissed
+        let splashScreenView = SplashView(viewModel: splashScreenViewModel)
+        let splashScreenViewController = SplashScreenViewController(view: splashScreenView)
+        splashScreenViewController.onDismissed = onDismissed
         return splashScreenViewController
     }
 }

@@ -8,13 +8,13 @@
 import Foundation
 
 protocol SplashScreenNavigationDelegate: AnyObject {
-    func initializedHomeTabBar()
+    func initializeHomeTabBar()
 }
 
 struct SplashScreenViewModel {
     let navigationDelegate: SplashScreenNavigationDelegate
     
     func navigateToHomeTabBar() {
-        navigationDelegate.initializedHomeTabBar()
+        navigationDelegate.initializeHomeTabBar()
     }
 }

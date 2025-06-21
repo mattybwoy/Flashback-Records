@@ -4,18 +4,16 @@
 //
 //  Created by Matthew Lock on 08/03/2025.
 //
-import UIKit
 import SwiftUI
+import NavigateCoordinator
 
-class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
+final class SplashScreenViewController<T: SplashScreenInterface>: BasicViewController {
     
     private var splashScreenView: T
-    private let viewModel: SplashScreenViewModel
     
-    init(view: T, viewModel: SplashScreenViewModel) {
+    init(view: T) {
         self.splashScreenView = view
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
 
     required init?(coder: NSCoder) {
@@ -24,7 +22,6 @@ class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.splashScreenView.splashDelegate = self
         setupSplashView()
     }
     
@@ -44,13 +41,3 @@ class SplashScreenViewController<T: SplashScreenInterface>: UIViewController {
     }
     
 }
-
-//extension SplashScreenViewController: SplashScreenDelegate {
-//    
-//    func didFinishSplash() {
-//        let newController = TabBarController()
-//        newController.modalPresentationStyle = .fullScreen
-//        present(newController, animated: true)
-//    }
-//    
-//}

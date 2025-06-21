@@ -7,7 +7,7 @@
 
 import NavigateCoordinator
 
-final class SplashScreenCoordinator: Coordinator {
+final class SplashScreenCoordinator: Coordinator, SplashScreenNavigationDelegate {
 
     typealias Factory = SplashScreenViewControllerFactory
     
@@ -18,13 +18,20 @@ final class SplashScreenCoordinator: Coordinator {
     weak var baseViewController: ViewController?
     unowned var parentCoordinator: Coordinator?
     
-    init(navigator: Navigator, factory: Factory? = nil) {
+    init(navigator: Navigator, factory: Factory) {
         self.navigator = navigator
         self.factory = factory
     }
     
+    @MainActor
     func start(transition: NavigateCoordinator.Transition, onDismissed: (() -> Void)?) {
-        <#code#>
+        let viewController: ViewController = factory.make(navigationDelegate: self, onDismissed: onDismissed)
+        baseViewController = viewController
+        navigator.navigate(to: viewController, transition: transition)
+    }
+    
+    func initializeHomeTabBar() {
+        
     }
     
 }

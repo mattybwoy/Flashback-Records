@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NavigateCoordinator
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -15,10 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         
-        //window.rootViewController = TabBarController()
-        window.rootViewController = SplashScreenViewController(view: SplashView())
-        window.makeKeyAndVisible()
-        self.window = window
+        let dependencyContainer = DependencyContainer()
+        let navigator = PrimaryNavigator(window: window)
+        let coordinator = SplashScreenCoordinator(navigator: navigator, factory: dependencyContainer)
+        coordinator.start(transition: .push(animated: true), onDismissed: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
