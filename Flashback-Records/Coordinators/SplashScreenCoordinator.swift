@@ -4,12 +4,11 @@
 //
 //  Created by Matthew Lock on 18/05/2025.
 //
-
 import NavigateCoordinator
 
-final class SplashScreenCoordinator: Coordinator, SplashScreenNavigationDelegate {
+final class SplashScreenCoordinator: Coordinator {
 
-    typealias Factory = SplashScreenViewControllerFactory
+    typealias Factory = SplashScreenViewControllerFactory & TabBarCoordinatorFactory
     
     var childCoordinators: [any Coordinator] = []
     
@@ -30,8 +29,14 @@ final class SplashScreenCoordinator: Coordinator, SplashScreenNavigationDelegate
         navigator.navigate(to: viewController, transition: transition)
     }
     
+}
+
+extension SplashScreenCoordinator: @preconcurrency SplashScreenNavigationDelegate {
+    
+    @MainActor
     func initializeHomeTabBar() {
-        
+        let coordinator = factory.makeTabBarCoordinator(navigator: navigator)
+        startChild(coordinator, transition: .push(animated: true), onDismissed: nil)
     }
     
 }

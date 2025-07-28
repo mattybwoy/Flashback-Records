@@ -7,15 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "21654D4C-2BEA-4A9D-8A2F-74861DE87BA8"
+            uuid = "D907B3FF-1CCC-4C70-9098-BEFCE493E4DA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Flashback-Records/Coordinators/SplashScreenCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "initializeHomeTabBar()"
             landmarkType = "7">
          </BreakpointContent>
