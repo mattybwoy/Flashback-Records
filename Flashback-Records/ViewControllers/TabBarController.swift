@@ -1,5 +1,5 @@
 //
-//  TabBarController.swift
+//  TabBarViewController.swift
 //  Flashback-Records
 //
 //  Created by Matthew Lock on 03/03/2025.
@@ -8,7 +8,7 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class TabBarController<T: TabBarInterface>: BasicViewController, UITabBarControllerDelegate {
+final class TabBarViewController<T: TabBarInterface>: BasicViewController, UITabBarControllerDelegate {
     
     private var tabBarView: T
     
@@ -24,39 +24,29 @@ final class TabBarController<T: TabBarInterface>: BasicViewController, UITabBarC
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-       setupTabs()
-        //self.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        
-//        let tabOne = WishlistViewController()
-//        let tabOneBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), selectedImage: UIImage(systemName: "list.clipboard"))
-//        tabOne.tabBarItem = tabOneBarItem
-//        
-//        let tabTwo = SearchViewController()
-//        let tabTwoBarItem2 = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), selectedImage: UIImage(systemName: "magnifyingglass"))
-//        tabTwo.tabBarItem = tabTwoBarItem2
-//        
-//        let tabThree = OrdersViewController()
-//        let tabThreeBarItem3 = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), selectedImage: UIImage(systemName: "shippingbox"))
-//        tabThree.tabBarItem = tabThreeBarItem3
-//        
-//        let tabFour = ProfileViewController()
-//        let tabFourBarItem4 = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle"))
-//        tabFour.tabBarItem = tabFourBarItem4
-//        
-//        self.tabBarController?.viewControllers = [tabOne, tabTwo, tabThree, tabFour]
     }
        
-       // UITabBarControllerDelegate method
-       func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-           print("Selected \(viewController.title!)")
-       }
-    
     private func setupView() {
-        let controller = UIHostingController(rootView: tabBarView.tabBarView)
+        let controller = UITabBarController()
+        
+        let wishlist = UIHostingController(rootView: WishlistView())
+        wishlist.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(named: "list.clipboard"), tag: 1)
+        
+        let search = UIHostingController(rootView: SearchView())
+        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
+        
+        let orders = UIHostingController(rootView: OrdersView())
+        orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 3)
+        
+        let profile = UIHostingController(rootView: ProfileView())
+        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 4)
+        
+        controller.viewControllers = [wishlist, search, orders, profile]
+        
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)
@@ -68,17 +58,11 @@ final class TabBarController<T: TabBarInterface>: BasicViewController, UITabBarC
                 controller.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                 controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
-    }
-    
-    private func setupTabs() {
-        let homeView = UIHostingController(rootView: HomeTabBarView().tabBarView)
-        homeView.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         
-        self.tabBarController?.viewControllers = [homeView]
     }
 }
 
-extension TabBarController: TabBarNavigationDelegate {
+extension TabBarViewController: TabBarNavigationDelegate {
     func navigateToSearchScreen() {
         print("okay")
     }

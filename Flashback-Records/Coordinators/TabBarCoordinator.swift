@@ -8,7 +8,7 @@ import NavigateCoordinator
 
 final class TabBarCoordinator: Coordinator {
 
-    typealias Factory = TabBarControllerFactory
+    typealias Factory = TabBarViewControllerFactory
 
     var childCoordinators: [Coordinator] = []
 
