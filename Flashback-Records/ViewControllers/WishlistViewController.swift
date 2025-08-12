@@ -14,7 +14,5 @@ class WishlistViewController: UIViewController {
         title = "Wishlist"
         view.backgroundColor = .systemBlue
     }
-
-
 }
 

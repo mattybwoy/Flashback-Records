@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfileView: View {
     var body: some View {
         Text("Profile")
-            .background(Color.purple)
+        Color.purple
     }
 }
 

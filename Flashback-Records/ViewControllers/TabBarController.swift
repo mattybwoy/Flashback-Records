@@ -34,16 +34,16 @@ final class TabBarViewController<T: TabBarInterface>: BasicViewController, UITab
         let controller = UITabBarController()
         
         let wishlist = UIHostingController(rootView: WishlistView())
-        wishlist.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(named: "list.clipboard"), tag: 1)
+        wishlist.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), tag: 0)
         
         let search = UIHostingController(rootView: SearchView())
-        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
+        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
         let orders = UIHostingController(rootView: OrdersView())
-        orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 3)
+        orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 2)
         
         let profile = UIHostingController(rootView: ProfileView())
-        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 4)
+        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 3)
         
         controller.viewControllers = [wishlist, search, orders, profile]
         
@@ -66,6 +66,5 @@ extension TabBarViewController: TabBarNavigationDelegate {
     func navigateToSearchScreen() {
         print("okay")
     }
-    
     
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct OrdersView: View {
     var body: some View {
         Text("Orders")
-            .background(Color.yellow)
+        Color.green
     }
 }
 

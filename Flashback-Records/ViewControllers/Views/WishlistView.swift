@@ -6,9 +6,13 @@
 //
 import SwiftUI
 
-public struct WishlistView: View {
-    public var body: some View {
+struct WishlistView: View {
+    var body: some View {
         Text("Wishlist")
-            .background(Color.blue)
+        Color.yellow
     }
+}
+
+#Preview {
+    WishlistView()
 }
