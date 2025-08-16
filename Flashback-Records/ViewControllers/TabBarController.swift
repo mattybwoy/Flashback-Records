@@ -39,7 +39,7 @@ final class TabBarViewController<T: TabBarInterface>: BasicViewController, UITab
         let search = UIHostingController(rootView: SearchView())
         search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
-        let orders = UIHostingController(rootView: OrdersView())
+        let orders = UIHostingController(rootView: OrderView())
         orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 2)
         
         let profile = UIHostingController(rootView: ProfileView())

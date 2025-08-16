@@ -6,7 +6,17 @@
 //
 import SwiftUI
 
-struct WishlistView: View {
+protocol WishlistScreenInterface {
+    associatedtype ViewType: View
+    var wishlistView: ViewType { get }
+}
+
+struct WishlistView: View, WishlistScreenInterface {
+    
+    var wishlistView: some View {
+        self
+    }
+    
     var body: some View {
         Text("Wishlist")
         Color.yellow

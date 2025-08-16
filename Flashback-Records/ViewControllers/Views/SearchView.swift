@@ -7,10 +7,20 @@
 
 import SwiftUI
 
-struct SearchView: View {
+protocol SearchScreenInterface {
+    associatedtype ViewType: View
+    var searchView: ViewType { get }
+}
+
+struct SearchView: View, SearchScreenInterface {
+    
+    var searchView: some View {
+        self
+    }
+    
     var body: some View {
         Text("Search")
-        Color.red
+        Color.green
     }
 }
 

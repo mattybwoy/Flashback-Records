@@ -7,13 +7,23 @@
 
 import SwiftUI
 
-struct OrdersView: View {
+protocol OrdersScreenInterface {
+    associatedtype ViewType: View
+    var orderView: ViewType { get }
+}
+
+struct OrderView: View, OrdersScreenInterface {
+    
+    var orderView: some View {
+        self
+    }
+    
     var body: some View {
         Text("Orders")
-        Color.green
+        Color.blue
     }
 }
 
 #Preview {
-    OrdersView()
+    OrderView()
 }

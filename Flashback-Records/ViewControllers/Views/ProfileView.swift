@@ -7,7 +7,17 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+protocol ProfileScreenInterface {
+    associatedtype ViewType: View
+    var profileView: ViewType { get }
+}
+
+struct ProfileView: View, ProfileScreenInterface {
+    
+    var profileView: some View {
+        self
+    }
+    
     var body: some View {
         Text("Profile")
         Color.purple
