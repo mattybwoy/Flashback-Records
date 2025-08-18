@@ -16,7 +16,13 @@ extension DependencyContainer: TabBarViewControllerFactory {
 
     func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController<HomeTabBarView> {
         let tabBarView = HomeTabBarView()
-        let TabBarViewController = TabBarViewController(view: tabBarView)
+        
+        let wishlistVC = WishlistViewController(view: WishlistView())
+        let searchVC = SearchViewController(view: SearchView())
+        let orderVC = OrderViewController(view: OrderView())
+        let profileVC = ProfileViewController(view: ProfileView())
+        
+        let TabBarViewController = TabBarViewController(view: tabBarView, wishlistVC: wishlistVC, searchVC: searchVC, orderVC: orderVC, profileVC: profileVC)
         TabBarViewController.onDismissed = onDismissed
         return TabBarViewController
     }

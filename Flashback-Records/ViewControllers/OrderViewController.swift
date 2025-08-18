@@ -1,5 +1,5 @@
 //
-//  OrdersViewController.swift
+//  OrderViewController.swift
 //  Flashback-Records
 //
 //  Created by Matthew Lock on 03/03/2025.
@@ -7,7 +7,7 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class OrdersViewController<T: OrdersScreenInterface>: BasicViewController {
+final class OrderViewController<T: OrderScreenInterface>: BasicViewController {
 
     private var orderView: T
     
@@ -17,6 +17,7 @@ final class OrdersViewController<T: OrdersScreenInterface>: BasicViewController 
     }
     
     override func viewDidLoad() {
+        setupOrderView()
         super.viewDidLoad()
     }
     

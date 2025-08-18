@@ -1,5 +1,5 @@
 //
-//  OrdersView.swift
+//  OrderView.swift
 //  Flashback-Records
 //
 //  Created by Matthew Lock on 09/08/2025.
@@ -7,19 +7,19 @@
 
 import SwiftUI
 
-protocol OrdersScreenInterface {
+protocol OrderScreenInterface {
     associatedtype ViewType: View
     var orderView: ViewType { get }
 }
 
-struct OrderView: View, OrdersScreenInterface {
+struct OrderView: View, OrderScreenInterface {
     
     var orderView: some View {
         self
     }
     
     var body: some View {
-        Text("Orders")
+        Text("Order")
         Color.blue
     }
 }

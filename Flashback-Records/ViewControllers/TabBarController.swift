@@ -11,9 +11,20 @@ import NavigateCoordinator
 final class TabBarViewController<T: TabBarInterface>: BasicViewController, UITabBarControllerDelegate {
     
     private var tabBarView: T
+    private var wishListVC: BasicViewController
+    private var searchVC: BasicViewController
+    private var orderVC: BasicViewController
+    private var profileVC: BasicViewController
     
-    init(view: T) {
+    init(view: T, wishlistVC: WishlistViewController<WishlistView>,
+         searchVC: SearchViewController<SearchView>,
+         orderVC: OrderViewController<OrderView>,
+         profileVC: ProfileViewController<ProfileView>) {
         self.tabBarView = view
+        self.wishListVC = wishlistVC
+        self.searchVC = searchVC
+        self.orderVC = orderVC
+        self.profileVC = profileVC
         super.init()
     }
     
@@ -23,29 +34,25 @@ final class TabBarViewController<T: TabBarInterface>: BasicViewController, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        setupTabBarView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
        
-    private func setupView() {
+    private func setupTabBarView() {
         let controller = UITabBarController()
         
-        let wishlist = UIHostingController(rootView: WishlistView())
-        wishlist.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), tag: 0)
+        wishListVC.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), tag: 0)
         
-        let search = UIHostingController(rootView: SearchView())
-        search.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
-        let orders = UIHostingController(rootView: OrderView())
-        orders.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 2)
+        orderVC.tabBarItem = UITabBarItem(title: "Order", image: UIImage(systemName: "shippingbox"), tag: 2)
         
-        let profile = UIHostingController(rootView: ProfileView())
-        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 3)
         
-        controller.viewControllers = [wishlist, search, orders, profile]
+        controller.viewControllers = [wishListVC, searchVC, orderVC, profileVC]
         
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false

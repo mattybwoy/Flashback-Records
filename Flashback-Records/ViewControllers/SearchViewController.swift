@@ -18,6 +18,7 @@ final class SearchViewController<T: SearchScreenInterface>: BasicViewController 
     }
     
     override func viewDidLoad() {
+        setupSearchView()
         super.viewDidLoad()
     }
     

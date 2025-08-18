@@ -18,10 +18,11 @@ final class ProfileViewController<T: ProfileScreenInterface>: BasicViewControlle
     }
     
     override func viewDidLoad() {
+        setupProfileView()
         super.viewDidLoad()
     }
     
-    private func setupOrderView() {
+    private func setupProfileView() {
         let controller = UIHostingController(rootView: profileView.profileView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false

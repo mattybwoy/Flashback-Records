@@ -17,6 +17,7 @@ final class WishlistViewController<T: WishlistScreenInterface>: BasicViewControl
     }
     
     override func viewDidLoad() {
+        setupWishlistView()
         super.viewDidLoad()
     }
     
