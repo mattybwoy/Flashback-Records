@@ -9,20 +9,19 @@ import Foundation
 import NavigateCoordinator
 
 protocol TabBarViewControllerFactory {
-    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController<HomeTabBarView>
+    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController
 }
 
 extension DependencyContainer: TabBarViewControllerFactory {
 
-    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController<HomeTabBarView> {
-        let tabBarView = HomeTabBarView()
+    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController {
         
         let wishlistVC = WishlistViewController(view: WishlistView())
         let searchVC = SearchViewController(view: SearchView())
         let orderVC = OrderViewController(view: OrderView())
         let profileVC = ProfileViewController(view: ProfileView())
         
-        let TabBarViewController = TabBarViewController(view: tabBarView, wishlistVC: wishlistVC, searchVC: searchVC, orderVC: orderVC, profileVC: profileVC)
+        let TabBarViewController = TabBarViewController(wishlistVC: wishlistVC, searchVC: searchVC, orderVC: orderVC, profileVC: profileVC)
         TabBarViewController.onDismissed = onDismissed
         return TabBarViewController
     }

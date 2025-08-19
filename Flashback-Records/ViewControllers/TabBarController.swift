@@ -8,19 +8,17 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class TabBarViewController<T: TabBarInterface>: BasicViewController, UITabBarControllerDelegate {
+final class TabBarViewController: BasicViewController, UITabBarControllerDelegate {
     
-    private var tabBarView: T
     private var wishListVC: BasicViewController
     private var searchVC: BasicViewController
     private var orderVC: BasicViewController
     private var profileVC: BasicViewController
     
-    init(view: T, wishlistVC: WishlistViewController<WishlistView>,
+    init(wishlistVC: WishlistViewController<WishlistView>,
          searchVC: SearchViewController<SearchView>,
          orderVC: OrderViewController<OrderView>,
          profileVC: ProfileViewController<ProfileView>) {
-        self.tabBarView = view
         self.wishListVC = wishlistVC
         self.searchVC = searchVC
         self.orderVC = orderVC
