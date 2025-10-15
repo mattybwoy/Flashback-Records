@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NavigateCoordinator
+import UIKit
 
 final class TabBarViewController: BasicViewController, UITabBarControllerDelegate {
     
@@ -14,15 +15,18 @@ final class TabBarViewController: BasicViewController, UITabBarControllerDelegat
     private var searchVC: BasicViewController
     private var orderVC: BasicViewController
     private var profileVC: BasicViewController
+    private var homeTabBarController: BasicTabBarController
     
     init(wishlistVC: WishlistViewController<WishlistView>,
          searchVC: SearchViewController<SearchView>,
          orderVC: OrderViewController<OrderView>,
-         profileVC: ProfileViewController<ProfileView>) {
+         profileVC: ProfileViewController<ProfileView>,
+         homeTabBarController: BasicTabBarController) {
         self.wishListVC = wishlistVC
         self.searchVC = searchVC
         self.orderVC = orderVC
         self.profileVC = profileVC
+        self.homeTabBarController = homeTabBarController
         super.init()
     }
     
@@ -39,8 +43,12 @@ final class TabBarViewController: BasicViewController, UITabBarControllerDelegat
         super.viewWillAppear(animated)
     }
        
+//    override var tabBarController: UITabBarController? {
+//        super.tabBarController
+//    }
+    
     private func setupTabBarView() {
-        let controller = UITabBarController()
+        let controller = self.homeTabBarController
         
         wishListVC.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), tag: 0)
         
@@ -49,9 +57,8 @@ final class TabBarViewController: BasicViewController, UITabBarControllerDelegat
         orderVC.tabBarItem = UITabBarItem(title: "Order", image: UIImage(systemName: "shippingbox"), tag: 2)
         
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 3)
-        
         controller.viewControllers = [wishListVC, searchVC, orderVC, profileVC]
-        
+
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)
