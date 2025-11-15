@@ -19,7 +19,8 @@ struct ProfileView: View, ProfileScreenInterface {
     }
     
     var body: some View {
-        Text("Profile")
+        Text("PROFILE")
+            .font(.appTitle)
         Color.purple
     }
 }

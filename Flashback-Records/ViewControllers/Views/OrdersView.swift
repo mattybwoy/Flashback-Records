@@ -19,7 +19,8 @@ struct OrderView: View, OrderScreenInterface {
     }
     
     var body: some View {
-        Text("Order")
+        Text("ORDERS")
+            .font(.appTitle)
         Color.blue
     }
 }

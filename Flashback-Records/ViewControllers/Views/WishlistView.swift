@@ -18,7 +18,8 @@ struct WishlistView: View, WishlistScreenInterface {
     }
     
     var body: some View {
-        Text("Wishlist")
+        Text("WISHLIST")
+            .font(.appTitle)
         Color.yellow
     }
 }

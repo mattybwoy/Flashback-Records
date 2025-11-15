@@ -19,7 +19,8 @@ struct SearchView: View, SearchScreenInterface {
     }
     
     var body: some View {
-        Text("Search")
+        Text("SEARCH")
+            .font(.appTitle)
         Color.green
     }
 }

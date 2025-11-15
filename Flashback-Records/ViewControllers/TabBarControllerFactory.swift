@@ -10,12 +10,12 @@ import NavigateCoordinator
 import UIKit
 
 protocol TabBarViewControllerFactory {
-    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> BasicTabBarController
+    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController
 }
 
 extension DependencyContainer: TabBarViewControllerFactory {
 
-    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> BasicTabBarController {
+    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController {
         
         let wishlistVC = WishlistViewController(view: WishlistView())
         let searchVC = SearchViewController(view: SearchView())
@@ -33,4 +33,3 @@ extension DependencyContainer: TabBarViewControllerFactory {
         return tabBarController
     }
 }
-

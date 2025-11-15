@@ -5,7 +5,6 @@
 //  Created by Matthew Lock on 03/03/2025.
 //
 
-import SwiftUI
 import NavigateCoordinator
 import UIKit
 
@@ -33,26 +32,38 @@ final class TabBarViewController: BasicTabBarController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTabBarView()
+        setupTabBarItems()
     }
     
-    private func setupTabBarView() {
+    private func setupTabBarItems() {
 
+        let font = UIFont(name: "HelveticaNeue", size: 12)!
+
+        let appearance = UITabBarAppearance()
+        appearance.configureWithDefaultBackground()
+
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .font: font,
+            .foregroundColor: UIColor.black
+        ]
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .font: font,
+            .foregroundColor: UIColor.black,
+        ]
+        
+        appearance.stackedLayoutAppearance.normal.iconColor = .black
+        appearance.stackedLayoutAppearance.selected.iconColor = .black
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+        
         wishlistVC.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), tag: 0)
         
         searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
-        orderVC.tabBarItem = UITabBarItem(title: "Order", image: UIImage(systemName: "shippingbox"), tag: 2)
+        orderVC.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 2)
         
         profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 3)
         
         self.viewControllers = [wishlistVC, searchVC, orderVC, profileVC]
     }
-}
-
-extension TabBarViewController: TabBarNavigationDelegate {
-    func navigateToSearchScreen() {
-        print("okay")
-    }
-    
 }
