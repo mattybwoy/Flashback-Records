@@ -30,6 +30,7 @@ struct SplashView: View, SplashScreenInterface {
             .rotationEffect(Angle(degrees: isAnimating ? 360 : 0), anchor: .center)
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                    isAnimating = false
                     viewModel.navigateToHomeTabBar()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {

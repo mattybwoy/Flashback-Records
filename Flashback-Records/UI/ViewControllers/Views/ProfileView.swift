@@ -10,15 +10,19 @@ import SwiftUI
 protocol ProfileScreenInterface {
     associatedtype ViewType: View
     var profileView: ViewType { get }
+    var viewModel: ProfileScreenViewModel { get set }
 }
 
 struct ProfileView: View, ProfileScreenInterface {
     
     @State private var email: String = ""
+    @State private var subscribeAlertIsPresented: Bool = false
     
     var profileView: some View {
         self
     }
+    
+    var viewModel: ProfileScreenViewModel
     
     var body: some View {
         Text("PROFILE")
@@ -39,7 +43,6 @@ struct ProfileView: View, ProfileScreenInterface {
                 .stroke(Color.black, lineWidth: 4))
             .padding(.vertical, 8)
             
-            
             Button {
                 //Action to open Modal sign up view
             } label: {
@@ -54,8 +57,6 @@ struct ProfileView: View, ProfileScreenInterface {
             .padding(.vertical, 8)
         }
         
-        Spacer()
-        
         VStack(spacing: 12) {
             Text("Subscribe to our newsletter")
                 .font(.appTitle)
@@ -63,7 +64,7 @@ struct ProfileView: View, ProfileScreenInterface {
             Text("Be the first to know about new collections and receive email-only discounts.")
                 .font(.appBody)
                 .multilineTextAlignment(.center)
-        
+            
             TextField("Email", text: $email)
                 .padding(.horizontal, 36)
                 .padding(.vertical, 14)
@@ -72,7 +73,16 @@ struct ProfileView: View, ProfileScreenInterface {
                 .keyboardType(.emailAddress)
             
             Button {
-                //Action to subscribe to newsletter
+                if email.isEmpty { subscribeAlertIsPresented = true }
+                Task {
+                    do {
+                        try await viewModel.subscribeToNewsletter(email: $email.wrappedValue)
+                    }
+                    catch {
+                        subscribeAlertIsPresented = true
+                        print("Error subscribing to newsletter")
+                    }
+                }
             } label: {
                 Text("Subscribe")
                     .font(.appBody)
@@ -83,6 +93,11 @@ struct ProfileView: View, ProfileScreenInterface {
             .overlay(Rectangle()
                 .stroke(Color.black, lineWidth: 4))
             .padding(.vertical, 8)
+            .alert("Error", isPresented: $subscribeAlertIsPresented) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Please enter a valid email address")
+            }
         }
         .padding(24)
         
@@ -106,6 +121,6 @@ struct ProfileView: View, ProfileScreenInterface {
     }
 }
 
-#Preview {
-    ProfileView()
-}
+//#Preview {
+//    ProfileView(viewModel: ProfileScreenViewModel(loginUseCase: <#T##LoginUseCase#>, signUpUseCase: <#T##SignUpUseCase#>))
+//}

@@ -15,12 +15,18 @@ protocol TabBarViewControllerFactory {
 
 extension DependencyContainer: TabBarViewControllerFactory {
 
-    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController {
+    @MainActor func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController {
         
         let wishlistVC = WishlistViewController(view: WishlistView())
         let searchVC = SearchViewController(view: SearchView())
         let orderVC = OrderViewController(view: OrderView())
-        let profileVC = ProfileViewController(view: ProfileView())
+        
+        let authenticationService = AuthenticationRepositoryImpl()
+        let profileVM = ProfileScreenViewModel(loginUseCase: LoginUseCase(authenticationService: authenticationService),
+                                               signUpUseCase: SignUpUseCase(authenticationService: authenticationService),
+                                               subscribeNewsletterUseCase: SubscribeNewsletterUseCase(authenticationService: authenticationService))
+        
+        let profileVC = ProfileViewController(view: ProfileView(viewModel: profileVM))
         
         let tabBarController = TabBarViewController(wishlistVC: wishlistVC,
                                                     searchVC: searchVC,
