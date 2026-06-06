@@ -37,7 +37,7 @@ final class TabBarViewController: BasicTabBarController {
     
     private func setupTabBarItems() {
 
-        let font = UIFont(name: "HelveticaNeue", size: 12)!
+        let font = UIFont(name: "Jost-Regular", size: 12)!
 
         let appearance = UITabBarAppearance()
         appearance.configureWithDefaultBackground()
@@ -56,13 +56,13 @@ final class TabBarViewController: BasicTabBarController {
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
         
-        wishlistVC.tabBarItem = UITabBarItem(title: "Wishlist", image: UIImage(systemName: "list.clipboard"), tag: 0)
+        wishlistVC.tabBarItem = UITabBarItem(title: "WISHLIST", image: UIImage(systemName: "list.clipboard"), tag: 0)
         
-        searchVC.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchVC.tabBarItem = UITabBarItem(title: "SEARCH", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
-        orderVC.tabBarItem = UITabBarItem(title: "Orders", image: UIImage(systemName: "shippingbox"), tag: 2)
+        orderVC.tabBarItem = UITabBarItem(title: "ORDERS", image: UIImage(systemName: "shippingbox"), tag: 2)
         
-        profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.crop.circle"), tag: 3)
+        profileVC.tabBarItem = UITabBarItem(title: "PROFILE", image: UIImage(systemName: "person.crop.circle"), tag: 3)
         
         self.viewControllers = [wishlistVC, searchVC, orderVC, profileVC]
     }

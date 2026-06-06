@@ -8,6 +8,6 @@
 import SwiftUI
 
 extension Font {
-    static let appTitle = Font.custom("HelveticaNeue", size: 24)
-    static let appBody = Font.custom("HelveticaNeue", size: 16)
+    static let appTitle = Font.custom("JostRoman-Medium", size: 24)
+    static let appBody = Font.custom("Jost-Regular", size: 16)
 }

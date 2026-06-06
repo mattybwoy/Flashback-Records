@@ -18,8 +18,10 @@ struct SearchView: View, SearchScreenInterface {
         self
     }
     
+    @State var searchTerm: String = ""
+    
     var body: some View {
-        Text("SEARCH")
+        TextField("Search", text: $searchTerm)
             .font(.appTitle)
         Color.green
     }

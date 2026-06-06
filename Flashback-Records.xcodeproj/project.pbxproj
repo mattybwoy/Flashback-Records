@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A7D1DDD2DD9E7ED004A1F30 /* NavigateCoordinator in Frameworks */ = {isa = PBXBuildFile; productRef = 0A7D1DDC2DD9E7ED004A1F30 /* NavigateCoordinator */; };
+		0AA8B2112FD430A2008E63A5 /* Jost-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AA8B20F2FD430A2008E63A5 /* Jost-Italic.ttf */; };
+		0AA8B2122FD430A2008E63A5 /* Jost.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AA8B2102FD430A2008E63A5 /* Jost.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,8 @@
 		0A8048912D7372A000264228 /* Flashback-Records.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flashback-Records.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8048AA2D7372A100264228 /* Flashback-RecordsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flashback-RecordsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A8048B42D7372A100264228 /* Flashback-RecordsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Flashback-RecordsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0AA8B20F2FD430A2008E63A5 /* Jost-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jost-Italic.ttf"; sourceTree = "<group>"; };
+		0AA8B2102FD430A2008E63A5 /* Jost.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Jost.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -97,6 +101,7 @@
 				0A8048AD2D7372A100264228 /* Flashback-RecordsTests */,
 				0A8048B72D7372A100264228 /* Flashback-RecordsUITests */,
 				0A8048922D7372A000264228 /* Products */,
+				0AA8B2132FD431C1008E63A5 /* Fonts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +113,15 @@
 				0A8048B42D7372A100264228 /* Flashback-RecordsUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0AA8B2132FD431C1008E63A5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0AA8B20F2FD430A2008E63A5 /* Jost-Italic.ttf */,
+				0AA8B2102FD430A2008E63A5 /* Jost.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +248,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AA8B2112FD430A2008E63A5 /* Jost-Italic.ttf in Resources */,
+				0AA8B2122FD430A2008E63A5 /* Jost.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
