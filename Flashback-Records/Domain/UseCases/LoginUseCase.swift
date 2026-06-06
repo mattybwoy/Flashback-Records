@@ -4,8 +4,11 @@
 //
 //  Created by Matthew Lock on 09/12/2025.
 //
+protocol LoginUseCaseProtocol {
+    func login(username: String, password: String) async throws -> Result<User, AuthenticationError>
+}
 
-struct LoginUseCase {
+struct LoginUseCase: LoginUseCaseProtocol {
     let authenticationService: AuthenticationRepository
     
     func login(username: String, password: String) async throws -> Result<User, AuthenticationError> {

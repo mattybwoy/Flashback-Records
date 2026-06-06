@@ -5,6 +5,10 @@
 //  Created by Matthew Lock on 23/03/2026.
 //
 
+protocol SubscribeNewsletterUseCaseProtocol {
+    func subscribe(email: String) async throws -> Result<User, SubscribeError>
+}
+
 struct SubscribeNewsletterUseCase {
     let authenticationService: AuthenticationRepository
     
