@@ -8,7 +8,7 @@ import NavigateCoordinator
 
 final class TabBarCoordinator: Coordinator {
 
-    typealias Factory = TabBarViewControllerFactory
+    typealias Factory = TabBarControllerFactory
 
     var childCoordinators: [Coordinator] = []
 
@@ -24,7 +24,7 @@ final class TabBarCoordinator: Coordinator {
 
     @MainActor
     func start(transition: Transition, onDismissed: (() -> Void)?) {
-        let tabBarViewController: TabBarViewController = factory.makeTabBar(tabBarNavigationDelegate: self, onDismissed: onDismissed)
+        let tabBarViewController: TabBarViewController = factory.makeTabBar(tabBarNavigationDelegate: navigator, onDismissed: onDismissed)
         baseViewController = tabBarViewController
         navigator.navigate(to: tabBarViewController, transition: transition)
     }
@@ -34,6 +34,11 @@ extension TabBarCoordinator: @preconcurrency TabBarNavigationDelegate {
     
     @MainActor
     func navigateToSearchScreen() {
+        finish(animated: true)
+    }
+    
+    @MainActor
+    func navigateToProfileScreen() {
         finish(animated: true)
     }
 }

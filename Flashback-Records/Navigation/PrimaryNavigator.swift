@@ -40,5 +40,4 @@ final class PrimaryNavigator: Navigator {
         fatalError("shouldn't pop to root")
     }
     
-    
 }

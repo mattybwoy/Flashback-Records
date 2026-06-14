@@ -7,7 +7,7 @@
 import SwiftUI
 
 @MainActor
-final class ProfileScreenViewModel: ObservableObject {
+final class ProfileViewModel: ObservableObject {
     
     @Published var userState: userState = .notLoggedIn
     

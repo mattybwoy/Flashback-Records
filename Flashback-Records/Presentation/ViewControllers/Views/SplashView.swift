@@ -7,17 +7,17 @@
 
 import SwiftUI
 
-protocol SplashScreenInterface {
+protocol SplashInterface {
     associatedtype ViewType: View
-    var splashScreenView: ViewType { get }
-    var viewModel: SplashScreenViewModel { get set }
+    var SplashView: ViewType { get }
+    var viewModel: SplashViewModel { get set }
 }
 
-struct SplashView: View, SplashScreenInterface {
+struct SplashView: View, SplashInterface {
 
-    var viewModel: SplashScreenViewModel
+    var viewModel: SplashViewModel
     
-    var splashScreenView: some View {
+    var SplashView: some View {
         self
     }
     

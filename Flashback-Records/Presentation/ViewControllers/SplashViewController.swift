@@ -1,5 +1,5 @@
 //
-//  SplashScreenViewController.swift
+//  SplashViewController.swift
 //  Flashback-Records
 //
 //  Created by Matthew Lock on 08/03/2025.
@@ -7,12 +7,12 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class SplashScreenViewController<T: SplashScreenInterface>: BasicViewController {
+final class SplashViewController<T: SplashInterface>: BasicViewController {
     
-    private var splashScreenView: T
+    private var SplashView: T
     
     init(view: T) {
-        self.splashScreenView = view
+        self.SplashView = view
         super.init()
     }
 
@@ -26,7 +26,7 @@ final class SplashScreenViewController<T: SplashScreenInterface>: BasicViewContr
     }
     
     private func setupSplashView() {
-        let controller = UIHostingController(rootView: splashScreenView.splashScreenView)
+        let controller = UIHostingController(rootView: SplashView.SplashView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)

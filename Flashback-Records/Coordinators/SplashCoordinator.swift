@@ -1,14 +1,18 @@
 //
-//  SplashScreenCoordinator.swift
+//  SplashCoordinator.swift
 //  Flashback-Records
 //
 //  Created by Matthew Lock on 18/05/2025.
 //
 import NavigateCoordinator
 
-final class SplashScreenCoordinator: Coordinator {
+protocol SplashNavigationDelegate: AnyObject {
+    func initializeHomeTabBar()
+}
 
-    typealias Factory = SplashScreenViewControllerFactory & TabBarCoordinatorFactory
+final class SplashCoordinator: Coordinator {
+
+    typealias Factory = SplashViewControllerFactory & TabBarCoordinatorFactory
     
     var childCoordinators: [any Coordinator] = []
     
@@ -31,7 +35,7 @@ final class SplashScreenCoordinator: Coordinator {
     
 }
 
-extension SplashScreenCoordinator: @preconcurrency SplashScreenNavigationDelegate {
+extension SplashCoordinator: @preconcurrency SplashNavigationDelegate {
     
     @MainActor
     func initializeHomeTabBar() {

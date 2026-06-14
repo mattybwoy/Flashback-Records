@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let dependencyContainer = DependencyContainer()
         let navigator = PrimaryNavigator(window: window)
-        let coordinator = SplashScreenCoordinator(navigator: navigator, factory: dependencyContainer)
+        let coordinator = SplashCoordinator(navigator: navigator, factory: dependencyContainer)
         coordinator.start(transition: .push(animated: true), onDismissed: nil)
     }
 

@@ -15,7 +15,7 @@ class MockAuthenticationRepository: AuthenticationRepository {
 protocol ProfileScreenInterface {
     associatedtype ViewType: View
     var profileView: ViewType { get }
-    var viewModel: ProfileScreenViewModel { get set }
+    var viewModel: ProfileViewModel { get set }
 }
 
 struct ProfileView: View, ProfileScreenInterface {
@@ -27,7 +27,7 @@ struct ProfileView: View, ProfileScreenInterface {
         self
     }
     
-    var viewModel: ProfileScreenViewModel
+    var viewModel: ProfileViewModel
     
     var body: some View {
         Image("Flashback Records LogoBlackBG")
@@ -131,12 +131,12 @@ struct ProfileView: View, ProfileScreenInterface {
     }
 }
 
-#Preview {
-    ProfileView(
-        viewModel: ProfileScreenViewModel(
-            loginUseCase: .init(authenticationService: MockAuthenticationRepository()),
-            signUpUseCase: SignUpUseCase(authenticationService: MockAuthenticationRepository()),
-            subscribeNewsletterUseCase: SubscribeNewsletterUseCase(authenticationService: MockAuthenticationRepository())
-        )
-    )
-}
+//#Preview {
+//    ProfileView(
+//        viewModel: ProfileScreenViewModel(
+//            loginUseCase: .init(authenticationService: MockAuthenticationRepository()),
+//            signUpUseCase: SignUpUseCase(authenticationService: MockAuthenticationRepository()),
+//            subscribeNewsletterUseCase: SubscribeNewsletterUseCase(authenticationService: MockAuthenticationRepository())
+//        )
+//    )
+//}

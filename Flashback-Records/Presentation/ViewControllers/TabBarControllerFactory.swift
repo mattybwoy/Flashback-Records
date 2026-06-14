@@ -9,33 +9,27 @@ import Foundation
 import NavigateCoordinator
 import UIKit
 
-protocol TabBarViewControllerFactory {
-    func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController
+protocol TabBarControllerFactory {
+    func makeTabBar(tabBarNavigationDelegate: Navigator, onDismissed: (() -> Void)?) -> TabBarViewController
 }
 
-extension DependencyContainer: TabBarViewControllerFactory {
+extension DependencyContainer: TabBarControllerFactory {
 
-    @MainActor func makeTabBar(tabBarNavigationDelegate: TabBarNavigationDelegate, onDismissed: (() -> Void)?) -> TabBarViewController {
-        
+    @MainActor
+    func makeTabBar(tabBarNavigationDelegate: Navigator, onDismissed: (() -> Void)?) -> TabBarViewController {
+
         let wishlistVC = WishlistViewController(view: WishlistView())
         let searchVC = SearchViewController(view: SearchView())
         let orderVC = OrderViewController(view: OrderView())
-        
-        let authenticationService = AuthenticationRepositoryImpl()
-        let profileVM = ProfileScreenViewModel(loginUseCase: LoginUseCase(authenticationService: authenticationService),
-                                               signUpUseCase: SignUpUseCase(authenticationService: authenticationService),
-                                               subscribeNewsletterUseCase: SubscribeNewsletterUseCase(authenticationService: authenticationService))
-        
-        let profileVC = ProfileViewController(view: ProfileView(viewModel: profileVM))
-        
+        let profileVC = makeProfileViewController(navigationDelegate: ProfileCoordinator(navigator: tabBarNavigationDelegate, factory: self), onDismissed: nil)
+
         let tabBarController = TabBarViewController(wishlistVC: wishlistVC,
                                                     searchVC: searchVC,
                                                     orderVC: orderVC,
                                                     profileVC: profileVC)
-        
-        tabBarController.viewControllers = [wishlistVC, searchVC, orderVC, profileVC]
+
         tabBarController.onDismissed = onDismissed
-        
+
         return tabBarController
     }
 }
