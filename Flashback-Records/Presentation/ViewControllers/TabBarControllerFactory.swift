@@ -18,7 +18,7 @@ extension DependencyContainer: TabBarControllerFactory {
     @MainActor
     func makeTabBar(tabBarNavigationDelegate: Navigator, onDismissed: (() -> Void)?) -> TabBarViewController {
 
-        let wishlistVC = WishlistViewController(view: WishlistView())
+        let wishlistVC = makeWishlistViewController(navigationDelegate: WishlistCoordinator(navigator: tabBarNavigationDelegate, factory: self), onDismissed: nil)
         let searchVC = SearchViewController(view: SearchView())
         let orderVC = OrderViewController(view: OrderView())
         let profileVC = makeProfileViewController(navigationDelegate: ProfileCoordinator(navigator: tabBarNavigationDelegate, factory: self), onDismissed: nil)
