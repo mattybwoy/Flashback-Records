@@ -12,6 +12,6 @@ protocol ProfileCoordinatorFactory {
 
 extension DependencyContainer: ProfileCoordinatorFactory {
     func makeProfileCoordinator(navigator: Navigator) -> Coordinator {
-        ProfileCoordinator(navigator: navigator, factory : self)
+        ProfileCoordinator(navigator: navigator, factory: self)
     }
 }

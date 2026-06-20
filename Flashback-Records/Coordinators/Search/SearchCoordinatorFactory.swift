@@ -13,6 +13,6 @@ protocol SearchCoordinatorFactory {
 
 extension DependencyContainer: SearchCoordinatorFactory {
     func makeSearchCoordinator(navigator: Navigator) -> Coordinator {
-        SearchCoordinator(navigator: navigator, factory : self)
+        SearchCoordinator(navigator: navigator, factory: self)
     }
 }

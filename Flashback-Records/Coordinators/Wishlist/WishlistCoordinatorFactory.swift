@@ -13,6 +13,6 @@ protocol WishlistCoordinatorFactory {
 
 extension DependencyContainer: WishlistCoordinatorFactory {
     func makeWishlistCoordinator(navigator: Navigator) -> Coordinator {
-        WishlistCoordinator(navigator: navigator, factory : self)
+        WishlistCoordinator(navigator: navigator, factory: self)
     }
 }

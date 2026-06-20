@@ -36,4 +36,3 @@ final class WishlistViewController<T: WishlistScreenInterface>: BasicViewControl
             ])
     }
 }
-

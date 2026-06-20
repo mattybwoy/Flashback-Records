@@ -12,6 +12,6 @@ protocol SplashCoordinatorFactory {
 
 extension DependencyContainer: SplashCoordinatorFactory {
     func makeSplashCoordinator(navigator: Navigator) -> Coordinator {
-        SplashCoordinator(navigator: navigator, factory : self)
+        SplashCoordinator(navigator: navigator, factory: self)
     }
 }

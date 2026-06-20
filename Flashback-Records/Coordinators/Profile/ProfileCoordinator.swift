@@ -7,7 +7,7 @@
 import NavigateCoordinator
 
 protocol ProfileNavigationDelegate: AnyObject {
-    //func initializeHomeTabBar()
+    // func initializeHomeTabBar()
 }
 
 final class ProfileCoordinator: Coordinator {

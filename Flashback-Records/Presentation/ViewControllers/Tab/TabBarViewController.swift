@@ -48,7 +48,7 @@ final class TabBarViewController: BasicTabBarController {
         ]
         appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
             .font: font,
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.black
         ]
         
         appearance.stackedLayoutAppearance.normal.iconColor = .black

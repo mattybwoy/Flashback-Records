@@ -13,7 +13,7 @@ struct SubscribeNewsletterUseCase {
     let authenticationService: AuthenticationRepository
     
     func subscribe(email: String) async throws -> Result<User, SubscribeError> {
-        //try await authenticationService.signUp(username: username, password: password)
+        // try await authenticationService.signUp(username: username, password: password)
         return .failure(.invalidEmail)
     }
 }

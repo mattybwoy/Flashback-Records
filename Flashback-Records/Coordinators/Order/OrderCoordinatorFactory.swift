@@ -13,6 +13,6 @@ protocol OrderCoordinatorFactory {
 
 extension DependencyContainer: OrderCoordinatorFactory {
     func makeOrderCoordinator(navigator: Navigator) -> Coordinator {
-        OrderCoordinator(navigator: navigator, factory : self)
+        OrderCoordinator(navigator: navigator, factory: self)
     }
 }

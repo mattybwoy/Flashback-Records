@@ -12,6 +12,6 @@ protocol TabBarCoordinatorFactory {
 
 extension DependencyContainer: TabBarCoordinatorFactory {
     func makeTabBarCoordinator(navigator: Navigator) -> Coordinator {
-        TabBarCoordinator(navigator: navigator, factory : self)
+        TabBarCoordinator(navigator: navigator, factory: self)
     }
 }

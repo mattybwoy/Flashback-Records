@@ -37,7 +37,7 @@ struct ProfileView: View, ProfileScreenInterface {
         
         VStack(spacing: 12) {
             Button {
-                //Action to open Modal sign in view
+                // Action to open Modal sign in view
             } label: {
                 Text("SIGN IN")
                     .font(.appBody)
@@ -50,7 +50,7 @@ struct ProfileView: View, ProfileScreenInterface {
             .padding(.vertical, 8)
             
             Button {
-                //Action to open Modal sign up view
+                // Action to open Modal sign up view
             } label: {
                 Text("SIGN UP")
                     .font(.appBody)
@@ -73,7 +73,6 @@ struct ProfileView: View, ProfileScreenInterface {
                 .multilineTextAlignment(.center)
                 .lineLimit(nil)
 
-            
             TextField("Email", text: $email)
                 .font(.appBody)
                 .padding(.horizontal, 36)
@@ -87,8 +86,7 @@ struct ProfileView: View, ProfileScreenInterface {
                 Task {
                     do {
                         try await viewModel.subscribeToNewsletter(email: $email.wrappedValue)
-                    }
-                    catch {
+                    } catch {
                         subscribeAlertIsPresented = true
                         print("Error subscribing to newsletter")
                     }
@@ -131,7 +129,7 @@ struct ProfileView: View, ProfileScreenInterface {
     }
 }
 
-//#Preview {
+// #Preview {
 //    ProfileView(
 //        viewModel: ProfileScreenViewModel(
 //            loginUseCase: .init(authenticationService: MockAuthenticationRepository()),
@@ -139,4 +137,4 @@ struct ProfileView: View, ProfileScreenInterface {
 //            subscribeNewsletterUseCase: SubscribeNewsletterUseCase(authenticationService: MockAuthenticationRepository())
 //        )
 //    )
-//}
+// }

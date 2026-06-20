@@ -12,9 +12,8 @@ struct LoginUseCase: LoginUseCaseProtocol {
     let authenticationService: AuthenticationRepository
     
     func login(username: String, password: String) async throws -> Result<User, AuthenticationError> {
-        //try await authenticationService.login(username: username, password: password)
-        //return User(id: .init(), token: "123")
+        // try await authenticationService.login(username: username, password: password)
+        // return User(id: .init(), token: "123")
         return .failure(.invalidCredentials)
     }
 }
-
