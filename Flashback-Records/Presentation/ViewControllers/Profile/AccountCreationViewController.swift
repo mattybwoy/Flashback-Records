@@ -1,32 +1,29 @@
 //
-//  SplashViewController.swift
+//  AccountCreationViewController.swift
 //  Flashback-Records
 //
-//  Created by Matthew Lock on 08/03/2025.
+//  Created by Matthew Lock on 26/06/2026.
 //
+
 import SwiftUI
 import NavigateCoordinator
 
-final class SplashViewController<T: SplashInterface>: BasicViewController {
-    
-    private var splashView: T
+final class AccountCreationViewController<T: AccountCreationScreenInterface>: BasicViewController {
+
+    private var accountCreationView: T
 
     init(view: T) {
-        self.splashView = view
+        self.accountCreationView = view
         super.init()
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override func viewDidLoad() {
+        setupAccountCreationView()
         super.viewDidLoad()
-        setupSplashView()
     }
 
-    private func setupSplashView() {
-        let controller = UIHostingController(rootView: splashView.splashView)
+    private func setupAccountCreationView() {
+        let controller = UIHostingController(rootView: accountCreationView.accountCreationView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)
@@ -39,5 +36,4 @@ final class SplashViewController<T: SplashInterface>: BasicViewController {
                 controller.view.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
     }
-    
 }

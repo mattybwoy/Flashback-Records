@@ -12,6 +12,10 @@ class MockAuthenticationRepository: AuthenticationRepository {
     func signUp(username: String, password: String) async throws -> User? { nil }
 }
 
+class MockProfileScreenNavigationDelegate: ProfileScreenNavigationDelegate {
+    func signUpTapped() {}
+}
+
 protocol ProfileScreenInterface {
     associatedtype ViewType: View
     var profileView: ViewType { get }
@@ -50,7 +54,7 @@ struct ProfileView: View, ProfileScreenInterface {
             .padding(.vertical, 8)
             
             Button {
-                // Action to open Modal sign up view
+                viewModel.signUpTapped()
             } label: {
                 Text("SIGN UP")
                     .font(.appBody)
@@ -110,31 +114,33 @@ struct ProfileView: View, ProfileScreenInterface {
         .padding(20)
         
         VStack(spacing: 4) {
-            Link("Privacy Policy", destination: URL(string: "https://flashback.co.uk/policies/privacy-policy")!)
+            Link("Privacy Policy", destination: URL(string: .privacyURL)!)
                 .font(.appBody)
                 .foregroundStyle(.black)
-            Link("Returns Policy", destination: URL(string: "https://flashback.co.uk/pages/returns-policy")!)
+            Link("Returns Policy", destination: URL(string: .returnsURL)!)
                 .font(.appBody)
                 .foregroundStyle(.black)
-            Link("Shipping Policy", destination: URL(string: "https://flashback.co.uk/pages/shipping-policy")!)
+            Link("Shipping Policy", destination: URL(string: .shippingURL)!)
                 .font(.appBody)
                 .foregroundStyle(.black)
-            Link("Contact Us", destination: URL(string: "https://flashback.co.uk/pages/contact-us")!)
+            Link("Contact Us", destination: URL(string: .contactURL)!)
                 .font(.appBody)
                 .foregroundStyle(.black)
-            Link("About Us", destination: URL(string: "https://flashback.co.uk/pages/about-us")!)
+            Link("About Us", destination: URL(string: .aboutURL)!)
                 .font(.appBody)
                 .foregroundStyle(.black)
         }
     }
 }
 
-// #Preview {
-//    ProfileView(
-//        viewModel: ProfileScreenViewModel(
-//            loginUseCase: .init(authenticationService: MockAuthenticationRepository()),
-//            signUpUseCase: SignUpUseCase(authenticationService: MockAuthenticationRepository()),
-//            subscribeNewsletterUseCase: SubscribeNewsletterUseCase(authenticationService: MockAuthenticationRepository())
-//        )
-//    )
-// }
+ #Preview {
+    ProfileView(
+        viewModel: ProfileViewModel(
+            navigationDelegate: MockProfileScreenNavigationDelegate(),
+            loginUseCase: .init(authenticationService: MockAuthenticationRepository()),
+            signUpUseCase: SignUpUseCase(authenticationService: MockAuthenticationRepository()),
+            subscribeNewsletterUseCase: SubscribeNewsletterUseCase(
+                authenticationService: MockAuthenticationRepository())
+        )
+    )
+ }

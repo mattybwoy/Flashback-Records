@@ -8,15 +8,19 @@
 import Foundation
 
 protocol OrderViewControllerFactory {
-    func makeOrderViewController(navigationDelegate: OrderNavigationDelegate, onDismissed: (() -> Void)?) -> OrderViewController<OrderView>
+    func makeOrderViewController(
+        navigationDelegate: OrderNavigationDelegate,
+        onDismissed: (() -> Void)?) -> OrderViewController<OrderView>
 }
 
 extension DependencyContainer: OrderViewControllerFactory {
     @MainActor
-    func makeOrderViewController(navigationDelegate: OrderNavigationDelegate, onDismissed: (() -> Void)?) -> OrderViewController<OrderView> {
-        let OrderView = OrderView()
-        let OrderViewController = OrderViewController(view: OrderView)
-        OrderViewController.onDismissed = onDismissed
-        return OrderViewController
+    func makeOrderViewController(
+        navigationDelegate: OrderNavigationDelegate,
+        onDismissed: (() -> Void)?) -> OrderViewController<OrderView> {
+        let orderView = OrderView()
+        let orderViewController = OrderViewController(view: orderView)
+        orderViewController.onDismissed = onDismissed
+        return orderViewController
     }
 }

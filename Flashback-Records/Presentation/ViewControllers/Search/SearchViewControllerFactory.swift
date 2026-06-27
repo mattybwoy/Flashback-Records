@@ -8,13 +8,17 @@
 import Foundation
 
 protocol SearchViewControllerFactory {
-    func makeSearchViewController(navigationDelegate: SearchNavigationDelegate, onDismissed: (() -> Void)?) -> SearchViewController<SearchView>
+    func makeSearchViewController(
+        navigationDelegate: SearchNavigationDelegate,
+        onDismissed: (() -> Void)?) -> SearchViewController<SearchView>
 }
 
 extension DependencyContainer: SearchViewControllerFactory {
-    
+
     @MainActor
-    func makeSearchViewController(navigationDelegate: SearchNavigationDelegate, onDismissed: (() -> Void)?) -> SearchViewController<SearchView> {
+    func makeSearchViewController(
+        navigationDelegate: SearchNavigationDelegate,
+        onDismissed: (() -> Void)?) -> SearchViewController<SearchView> {
         let searchView = SearchView()
         let searchViewController = SearchViewController(view: searchView)
         searchViewController.onDismissed = onDismissed

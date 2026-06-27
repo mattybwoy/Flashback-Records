@@ -8,12 +8,16 @@
 import Foundation
 
 protocol WishlistViewControllerFactory {
-    func makeWishlistViewController(navigationDelegate: WishlistNavigationDelegate, onDismissed: (() -> Void)?) -> WishlistViewController<WishlistView>
+    func makeWishlistViewController(
+        navigationDelegate: WishlistNavigationDelegate,
+        onDismissed: (() -> Void)?) -> WishlistViewController<WishlistView>
 }
 
 extension DependencyContainer: WishlistViewControllerFactory {
     @MainActor
-    func makeWishlistViewController(navigationDelegate: WishlistNavigationDelegate, onDismissed: (() -> Void)?) -> WishlistViewController<WishlistView> {
+    func makeWishlistViewController(
+        navigationDelegate: WishlistNavigationDelegate,
+        onDismissed: (() -> Void)?) -> WishlistViewController<WishlistView> {
         let wishlistView = WishlistView()
         let wishlistViewController = WishlistViewController(view: wishlistView)
         wishlistViewController.onDismissed = onDismissed

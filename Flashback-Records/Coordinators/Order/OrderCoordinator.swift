@@ -28,7 +28,9 @@ final class OrderCoordinator: Coordinator {
     
     @MainActor
     func start(transition: NavigateCoordinator.Transition, onDismissed: (() -> Void)?) {
-        let viewController: ViewController = factory.makeOrderViewController(navigationDelegate: self, onDismissed: onDismissed)
+        let viewController: ViewController = factory.makeOrderViewController(
+            navigationDelegate: self,
+            onDismissed: onDismissed)
         baseViewController = viewController
         navigator.navigate(to: viewController, transition: transition)
     }

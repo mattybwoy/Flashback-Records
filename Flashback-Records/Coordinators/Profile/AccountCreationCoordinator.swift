@@ -1,18 +1,15 @@
 //
-//  WishlistCoordinator.swift
+//  AccountCreationCoordinator.swift
 //  Flashback-Records
 //
-//  Created by Matthew Lock on 16/06/2026.
+//  Created by Matthew Lock on 27/06/2026.
 //
 
 import NavigateCoordinator
 
-protocol WishlistNavigationDelegate: AnyObject {
-}
-
-final class WishlistCoordinator: Coordinator {
-
-    typealias Factory = WishlistViewControllerFactory
+final class AccountCreationCoordinator: Coordinator {
+    
+    typealias Factory = AccountCreationViewControllerFactory
     
     var childCoordinators: [any Coordinator] = []
     
@@ -28,15 +25,9 @@ final class WishlistCoordinator: Coordinator {
     
     @MainActor
     func start(transition: NavigateCoordinator.Transition, onDismissed: (() -> Void)?) {
-        let viewController: ViewController = factory.makeWishlistViewController(
-            navigationDelegate: self,
-            onDismissed: onDismissed)
+        let viewController: ViewController = factory.makeAccountCreationViewController(onDismissed: onDismissed)
         baseViewController = viewController
         navigator.navigate(to: viewController, transition: transition)
     }
-    
-}
 
-extension WishlistCoordinator: @preconcurrency WishlistNavigationDelegate {
-    
 }

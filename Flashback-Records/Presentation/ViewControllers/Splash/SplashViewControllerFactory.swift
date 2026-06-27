@@ -7,16 +7,20 @@
 import Foundation
 
 protocol SplashViewControllerFactory {
-    func make(navigationDelegate: SplashNavigationDelegate, onDismissed: (() -> Void)?) -> SplashViewController<SplashView>
+    func make(
+        navigationDelegate: SplashNavigationDelegate,
+        onDismissed: (() -> Void)?) -> SplashViewController<SplashView>
 }
 
 extension DependencyContainer: SplashViewControllerFactory {
 
-    func make(navigationDelegate: SplashNavigationDelegate, onDismissed: (() -> Void)?) -> SplashViewController<SplashView> {
-        let SplashViewModel = SplashViewModel(navigationDelegate: navigationDelegate)
-        let SplashView = SplashView(viewModel: SplashViewModel)
-        let SplashViewController = SplashViewController(view: SplashView)
-        SplashViewController.onDismissed = onDismissed
-        return SplashViewController
+    func make(
+        navigationDelegate: SplashNavigationDelegate,
+        onDismissed: (() -> Void)?) -> SplashViewController<SplashView> {
+        let splashViewModel = SplashViewModel(navigationDelegate: navigationDelegate)
+        let splashView = SplashView(viewModel: splashViewModel)
+        let splashViewController = SplashViewController(view: splashView)
+        splashViewController.onDismissed = onDismissed
+        return splashViewController
     }
 }

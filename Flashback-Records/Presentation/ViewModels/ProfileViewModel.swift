@@ -6,16 +6,27 @@
 //
 import SwiftUI
 
+protocol ProfileScreenNavigationDelegate: AnyObject {
+    func signUpTapped()
+}
+
 @MainActor
 final class ProfileViewModel: ObservableObject {
     
-    @Published var userState: userState = .notLoggedIn
+    @Published var userState: UserState = .notLoggedIn
+    let navigationDelegate: ProfileScreenNavigationDelegate
     
     private let loginUseCase: LoginUseCase
     private let signUpUseCase: SignUpUseCase
     private let subscribeNewsletterUseCase: SubscribeNewsletterUseCase
     
-    init(loginUseCase: LoginUseCase, signUpUseCase: SignUpUseCase, subscribeNewsletterUseCase: SubscribeNewsletterUseCase) {
+    init(
+        navigationDelegate: ProfileScreenNavigationDelegate,
+        loginUseCase: LoginUseCase,
+        signUpUseCase: SignUpUseCase,
+        subscribeNewsletterUseCase: SubscribeNewsletterUseCase
+    ) {
+        self.navigationDelegate = navigationDelegate
         self.loginUseCase = loginUseCase
         self.signUpUseCase = signUpUseCase
         self.subscribeNewsletterUseCase = subscribeNewsletterUseCase
@@ -71,9 +82,13 @@ final class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    func signUpTapped() {
+        navigationDelegate.signUpTapped()
+    }
 }
 
-enum userState {
+enum UserState {
     case notLoggedIn
     case loading
     case loggedIn(User)

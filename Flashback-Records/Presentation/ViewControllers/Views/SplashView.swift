@@ -9,15 +9,15 @@ import SwiftUI
 
 protocol SplashInterface {
     associatedtype ViewType: View
-    var SplashView: ViewType { get }
+    var splashView: ViewType { get }
     var viewModel: SplashViewModel { get set }
 }
 
 struct SplashView: View, SplashInterface {
 
     var viewModel: SplashViewModel
-    
-    var SplashView: some View {
+
+    var splashView: some View {
         self
     }
     

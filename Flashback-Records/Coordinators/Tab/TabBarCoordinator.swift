@@ -24,7 +24,9 @@ final class TabBarCoordinator: Coordinator {
 
     @MainActor
     func start(transition: Transition, onDismissed: (() -> Void)?) {
-        let tabBarViewController: TabBarViewController = factory.makeTabBar(tabBarNavigationDelegate: navigator, onDismissed: onDismissed)
+        let tabBarViewController: TabBarViewController = factory.makeTabBar(
+            tabBarNavigationDelegate: navigator,
+            onDismissed: onDismissed)
         baseViewController = tabBarViewController
         navigator.navigate(to: tabBarViewController, transition: transition)
     }
