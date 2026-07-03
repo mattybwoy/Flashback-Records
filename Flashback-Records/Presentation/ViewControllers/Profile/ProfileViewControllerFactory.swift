@@ -14,7 +14,7 @@ protocol ProfileViewControllerFactory {
 }
 
 protocol AccountCreationViewControllerFactory {
-    func makeAccountCreationViewController(
+    func makeAccountCreationViewController(navigationDelegate: AccountCreationScreenNavigationDelegate,
         onDismissed: (() -> Void)?) -> AccountCreationViewController<AccountCreationView>
 }
 
@@ -41,9 +41,15 @@ extension DependencyContainer: ProfileViewControllerFactory {
 }
 
 extension DependencyContainer: AccountCreationViewControllerFactory {
-    func makeAccountCreationViewController(
+    @MainActor
+    func makeAccountCreationViewController(navigationDelegate: AccountCreationScreenNavigationDelegate,
         onDismissed: (() -> Void)?) -> AccountCreationViewController<AccountCreationView> {
-        let accountCreationView = AccountCreationView()
+        let authenticationService = AuthenticationRepositoryImpl()
+        let signUpUseCase = SignUpUseCase(authenticationService: authenticationService)
+        let accountCreationViewModel = AccountCreationViewModel(
+            navigationDelegate: navigationDelegate,
+            signUpUseCase: signUpUseCase)
+            let accountCreationView = AccountCreationView(viewModel: accountCreationViewModel)
         let accountCreationViewController = AccountCreationViewController(view: accountCreationView)
         accountCreationViewController.onDismissed = onDismissed
         return accountCreationViewController

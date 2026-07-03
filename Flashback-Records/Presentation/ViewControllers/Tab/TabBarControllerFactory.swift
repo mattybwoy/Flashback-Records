@@ -18,23 +18,42 @@ extension DependencyContainer: TabBarControllerFactory {
     @MainActor
     func makeTabBar(tabBarNavigationDelegate: Navigator, onDismissed: (() -> Void)?) -> TabBarViewController {
 
+        let wishlistNav = BasicNavigationController()
+        let wishlistNavigator = BasicNavigator(navigationController: wishlistNav)
+        let wishlistCoordinator = WishlistCoordinator(navigator: wishlistNavigator, factory: self)
         let wishlistVC = makeWishlistViewController(
-            navigationDelegate: WishlistCoordinator(navigator: tabBarNavigationDelegate, factory: self),
+            navigationDelegate: wishlistCoordinator,
             onDismissed: nil)
-        let searchVC = makeSearchViewController(
-            navigationDelegate: SearchCoordinator(navigator: tabBarNavigationDelegate, factory: self),
-            onDismissed: nil)
-        let orderVC = makeOrderViewController(
-            navigationDelegate: OrderCoordinator(navigator: tabBarNavigationDelegate, factory: self),
-            onDismissed: nil)
-        let profileVC = makeProfileViewController(
-            navigationDelegate: ProfileCoordinator(navigator: tabBarNavigationDelegate, factory: self),
-            onDismissed: nil)
+        wishlistNav.setViewControllers([wishlistVC], animated: false)
 
-        let tabBarController = TabBarViewController(wishlistVC: wishlistVC,
-                                                    searchVC: searchVC,
-                                                    orderVC: orderVC,
-                                                    profileVC: profileVC)
+        let searchNav = BasicNavigationController()
+        let searchNavigator = BasicNavigator(navigationController: searchNav)
+        let searchCoordinator = SearchCoordinator(navigator: searchNavigator, factory: self)
+        let searchVC = makeSearchViewController(
+            navigationDelegate: searchCoordinator,
+            onDismissed: nil)
+        searchNav.setViewControllers([searchVC], animated: false)
+
+        let orderNav = BasicNavigationController()
+        let orderNavigator = BasicNavigator(navigationController: orderNav)
+        let orderCoordinator = OrderCoordinator(navigator: orderNavigator, factory: self)
+        let orderVC = makeOrderViewController(
+            navigationDelegate: orderCoordinator,
+            onDismissed: nil)
+        orderNav.setViewControllers([orderVC], animated: false)
+
+        let profileNav = BasicNavigationController()
+        let profileNavigator = BasicNavigator(navigationController: profileNav)
+        let profileCoordinator = ProfileCoordinator(navigator: profileNavigator, factory: self)
+        let profileVC = makeProfileViewController(
+            navigationDelegate: profileCoordinator,
+            onDismissed: nil)
+        profileNav.setViewControllers([profileVC], animated: false)
+
+        let tabBarController = TabBarViewController(wishlistNav: wishlistNav,
+                                                    searchNav: searchNav,
+                                                    orderNav: orderNav,
+                                                    profileNav: profileNav)
 
         tabBarController.onDismissed = onDismissed
 

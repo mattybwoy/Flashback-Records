@@ -10,19 +10,19 @@ import UIKit
 
 final class TabBarViewController: BasicTabBarController {
     
-    private var wishlistVC: BasicViewController
-    private var searchVC: BasicViewController
-    private var orderVC: BasicViewController
-    private var profileVC: BasicViewController
+    private var wishlistNav: BasicNavigationController
+    private var searchNav: BasicNavigationController
+    private var orderNav: BasicNavigationController
+    private var profileNav: BasicNavigationController
     
-    init(wishlistVC: WishlistViewController<WishlistView>,
-         searchVC: SearchViewController<SearchView>,
-         orderVC: OrderViewController<OrderView>,
-         profileVC: ProfileViewController<ProfileView>) {
-        self.wishlistVC = wishlistVC
-        self.searchVC = searchVC
-        self.orderVC = orderVC
-        self.profileVC = profileVC
+    init(wishlistNav: BasicNavigationController,
+         searchNav: BasicNavigationController,
+         orderNav: BasicNavigationController,
+         profileNav: BasicNavigationController) {
+        self.wishlistNav = wishlistNav
+        self.searchNav = searchNav
+        self.orderNav = orderNav
+        self.profileNav = profileNav
         super.init()
     }
     
@@ -56,14 +56,14 @@ final class TabBarViewController: BasicTabBarController {
         UITabBar.appearance().standardAppearance = appearance
         UITabBar.appearance().scrollEdgeAppearance = appearance
         
-        wishlistVC.tabBarItem = UITabBarItem(title: "WISHLIST", image: UIImage(systemName: "list.clipboard"), tag: 0)
+        wishlistNav.tabBarItem = UITabBarItem(title: "WISHLIST", image: UIImage(systemName: "list.clipboard"), tag: 0)
         
-        searchVC.tabBarItem = UITabBarItem(title: "SEARCH", image: UIImage(systemName: "magnifyingglass"), tag: 1)
+        searchNav.tabBarItem = UITabBarItem(title: "SEARCH", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         
-        orderVC.tabBarItem = UITabBarItem(title: "ORDERS", image: UIImage(systemName: "shippingbox"), tag: 2)
+        orderNav.tabBarItem = UITabBarItem(title: "ORDERS", image: UIImage(systemName: "shippingbox"), tag: 2)
         
-        profileVC.tabBarItem = UITabBarItem(title: "PROFILE", image: UIImage(systemName: "person.crop.circle"), tag: 3)
+        profileNav.tabBarItem = UITabBarItem(title: "PROFILE", image: UIImage(systemName: "person.crop.circle"), tag: 3)
         
-        self.viewControllers = [wishlistVC, searchVC, orderVC, profileVC]
+        self.viewControllers = [wishlistNav, searchNav, orderNav, profileNav]
     }
 }
