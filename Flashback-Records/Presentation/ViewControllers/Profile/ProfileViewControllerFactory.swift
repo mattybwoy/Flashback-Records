@@ -18,6 +18,11 @@ protocol AccountCreationViewControllerFactory {
         onDismissed: (() -> Void)?) -> AccountCreationViewController<AccountCreationView>
 }
 
+protocol AccountLoginViewControllerFactory {
+    func makeAccountLoginViewController(navigationDelegate: AccountLoginScreenNavigationDelegate,
+        onDismissed: (() -> Void)?) -> AccountLoginViewController<AccountLoginView>
+}
+
 extension DependencyContainer: ProfileViewControllerFactory {
 
     @MainActor
@@ -25,13 +30,11 @@ extension DependencyContainer: ProfileViewControllerFactory {
         navigationDelegate: ProfileScreenNavigationDelegate,
         onDismissed: (() -> Void)?) -> ProfileViewController<ProfileView> {
         let authenticationService = AuthenticationRepositoryImpl()
-        let loginUseCase = LoginUseCase(authenticationService: authenticationService)
-        let signUpUseCase = SignUpUseCase(authenticationService: authenticationService)
+        let loginUseCase = LogInUseCase(authenticationService: authenticationService)
         let newsLetterUseCase = SubscribeNewsletterUseCase(authenticationService: authenticationService)
         let profileViewModel = ProfileViewModel(
             navigationDelegate: navigationDelegate,
             loginUseCase: loginUseCase,
-            signUpUseCase: signUpUseCase,
             subscribeNewsletterUseCase: newsLetterUseCase)
         let profileView = ProfileView(viewModel: profileViewModel)
         let profileViewController = ProfileViewController(view: profileView)
@@ -49,9 +52,25 @@ extension DependencyContainer: AccountCreationViewControllerFactory {
         let accountCreationViewModel = AccountCreationViewModel(
             navigationDelegate: navigationDelegate,
             signUpUseCase: signUpUseCase)
-            let accountCreationView = AccountCreationView(viewModel: accountCreationViewModel)
+        let accountCreationView = AccountCreationView(viewModel: accountCreationViewModel)
         let accountCreationViewController = AccountCreationViewController(view: accountCreationView)
         accountCreationViewController.onDismissed = onDismissed
         return accountCreationViewController
+    }
+}
+
+extension DependencyContainer: AccountLoginViewControllerFactory {
+    @MainActor
+    func makeAccountLoginViewController(navigationDelegate: AccountLoginScreenNavigationDelegate,
+        onDismissed: (() -> Void)?) -> AccountLoginViewController<AccountLoginView> {
+        let authenticationService = AuthenticationRepositoryImpl()
+        let logInUseCase = LogInUseCase(authenticationService: authenticationService)
+        let accountLoginViewModel = AccountLoginViewModel(
+            navigationDelegate: navigationDelegate,
+            loginUseCase: logInUseCase)
+        let accountLoginView = AccountLoginView(viewModel: accountLoginViewModel)
+        let accountLoginViewController = AccountLoginViewController(view: accountLoginView)
+        accountLoginViewController.onDismissed = onDismissed
+        return accountLoginViewController
     }
 }

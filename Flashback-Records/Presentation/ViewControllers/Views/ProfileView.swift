@@ -13,7 +13,8 @@ class MockAuthenticationRepository: AuthenticationRepository {
 }
 
 class MockProfileScreenNavigationDelegate: ProfileScreenNavigationDelegate {
-    func signUpTapped() {}
+    func signupTapped() {}
+    func signinTapped() {}
 }
 
 struct ProfileView: View {
@@ -31,7 +32,7 @@ struct ProfileView: View {
         
         VStack(spacing: 12) {
             Button {
-                // Action to open Modal sign in view
+                viewModel.signinTapped()
             } label: {
                 Text("SIGN IN")
                     .font(.appBody)
@@ -44,7 +45,7 @@ struct ProfileView: View {
             .padding(.vertical, 8)
             
             Button {
-                viewModel.signUpTapped()
+                viewModel.signupTapped()
             } label: {
                 Text("SIGN UP")
                     .font(.appBody)
@@ -128,7 +129,6 @@ struct ProfileView: View {
         viewModel: ProfileViewModel(
             navigationDelegate: MockProfileScreenNavigationDelegate(),
             loginUseCase: .init(authenticationService: MockAuthenticationRepository()),
-            signUpUseCase: SignUpUseCase(authenticationService: MockAuthenticationRepository()),
             subscribeNewsletterUseCase: SubscribeNewsletterUseCase(
                 authenticationService: MockAuthenticationRepository())
         )

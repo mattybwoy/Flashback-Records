@@ -8,7 +8,7 @@ import NavigateCoordinator
 
 final class ProfileCoordinator: Coordinator {
 
-    typealias Factory = ProfileViewControllerFactory & AccountCreationCoordinatorFactory
+    typealias Factory = ProfileViewControllerFactory & AccountCreationCoordinatorFactory & AccountLoginCoordinatorFactory
 
     var childCoordinators: [any Coordinator] = []
 
@@ -34,8 +34,14 @@ final class ProfileCoordinator: Coordinator {
 }
 
 extension ProfileCoordinator: ProfileScreenNavigationDelegate {
-    func signUpTapped() {
+    
+    func signupTapped() {
         let coordinator = factory.makeAccountCreationCoordinator(navigator: navigator)
+        startChild(coordinator, transition: .push(animated: true), onDismissed: nil)
+    }
+    
+    func signinTapped() {
+        let coordinator = factory.makeAccountLoginCoordinator(navigator: navigator)
         startChild(coordinator, transition: .push(animated: true), onDismissed: nil)
     }
 }
