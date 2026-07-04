@@ -24,6 +24,7 @@ extension DependencyContainer: TabBarControllerFactory {
         let wishlistVC = makeWishlistViewController(
             navigationDelegate: wishlistCoordinator,
             onDismissed: nil)
+        wishlistNav.navigationBar.isHidden = true
         wishlistNav.setViewControllers([wishlistVC], animated: false)
 
         let searchNav = BasicNavigationController()
@@ -32,6 +33,7 @@ extension DependencyContainer: TabBarControllerFactory {
         let searchVC = makeSearchViewController(
             navigationDelegate: searchCoordinator,
             onDismissed: nil)
+        searchNav.navigationBar.isHidden = true
         searchNav.setViewControllers([searchVC], animated: false)
 
         let orderNav = BasicNavigationController()
@@ -40,6 +42,7 @@ extension DependencyContainer: TabBarControllerFactory {
         let orderVC = makeOrderViewController(
             navigationDelegate: orderCoordinator,
             onDismissed: nil)
+        orderNav.navigationBar.isHidden = true
         orderNav.setViewControllers([orderVC], animated: false)
 
         let profileNav = BasicNavigationController()
@@ -48,6 +51,7 @@ extension DependencyContainer: TabBarControllerFactory {
         let profileVC = makeProfileViewController(
             navigationDelegate: profileCoordinator,
             onDismissed: nil)
+        profileNav.navigationBar.isHidden = true
         profileNav.setViewControllers([profileVC], animated: false)
 
         let tabBarController = TabBarViewController(wishlistNav: wishlistNav,

@@ -8,7 +8,7 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class AccountCreationViewController<T: AccountCreationScreenInterface>: BasicViewController {
+final class AccountCreationViewController<T: View>: BasicViewController {
 
     private var accountCreationView: T
 
@@ -23,7 +23,7 @@ final class AccountCreationViewController<T: AccountCreationScreenInterface>: Ba
     }
 
     private func setupAccountCreationView() {
-        let controller = UIHostingController(rootView: accountCreationView.accountCreationView)
+        let controller = UIHostingController(rootView: accountCreationView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)

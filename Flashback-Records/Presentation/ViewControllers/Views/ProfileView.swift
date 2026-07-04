@@ -16,21 +16,11 @@ class MockProfileScreenNavigationDelegate: ProfileScreenNavigationDelegate {
     func signUpTapped() {}
 }
 
-protocol ProfileScreenInterface {
-    associatedtype ViewType: View
-    var profileView: ViewType { get }
-    var viewModel: ProfileViewModel { get set }
-}
+struct ProfileView: View {
 
-struct ProfileView: View, ProfileScreenInterface {
-    
     @State private var email: String = ""
     @State private var subscribeAlertIsPresented: Bool = false
-    
-    var profileView: some View {
-        self
-    }
-    
+
     var viewModel: ProfileViewModel
     
     var body: some View {

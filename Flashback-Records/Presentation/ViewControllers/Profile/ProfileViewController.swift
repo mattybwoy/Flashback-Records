@@ -8,22 +8,22 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class ProfileViewController<T: ProfileScreenInterface>: BasicViewController {
+final class ProfileViewController<T: View>: BasicViewController {
 
     private var profileView: T
-    
+
     init(view: T) {
         self.profileView = view
         super.init()
     }
-    
+
     override func viewDidLoad() {
         setupProfileView()
         super.viewDidLoad()
     }
-    
+
     private func setupProfileView() {
-        let controller = UIHostingController(rootView: profileView.profileView)
+        let controller = UIHostingController(rootView: profileView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)

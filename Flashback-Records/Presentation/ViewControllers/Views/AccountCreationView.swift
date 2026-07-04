@@ -7,35 +7,38 @@
 
 import SwiftUI
 
-protocol AccountCreationScreenInterface {
-    associatedtype ViewType: View
-    var accountCreationView: ViewType { get }
-    var viewModel: AccountCreationViewModel { get set }
+class MockAccountCreationScreenNavigationDelegate: AccountCreationScreenNavigationDelegate {
+    func returnToProfileScreen() {}
 }
 
-struct AccountCreationView: View, AccountCreationScreenInterface {
+struct AccountCreationView: View {
     var viewModel: AccountCreationViewModel
-    
-    var accountCreationView: some View {
-        self
-    }
-    
+
     var body: some View {
         HStack {
             Button {
                 viewModel.didTappedBack()
             } label: {
                 Image(systemName: "arrowshape.backward.circle.fill")
+                    .foregroundStyle(Color.black)
+                    .font(.appTitle)
             }
             Spacer()
             Text("Create Account")
                 .font(.appTitle)
+                .padding(.trailing, 16)
             Spacer()
         }
+        .padding(.horizontal, 16)
         Color.yellow
     }
 }
 
-//#Preview {
-//    AccountCreationView(viewModel: )
-//}
+#Preview {
+    AccountCreationView(
+        viewModel: AccountCreationViewModel(
+            navigationDelegate: MockAccountCreationScreenNavigationDelegate(),
+            signUpUseCase: SignUpUseCase(authenticationService: MockAuthenticationRepository())
+        )
+    )
+}
