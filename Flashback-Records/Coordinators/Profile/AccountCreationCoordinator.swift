@@ -25,7 +25,9 @@ final class AccountCreationCoordinator: Coordinator {
     
     @MainActor
     func start(transition: NavigateCoordinator.Transition, onDismissed: (() -> Void)?) {
-        let viewController: ViewController = factory.makeAccountCreationViewController(navigationDelegate: self, onDismissed: onDismissed)
+        let viewController: ViewController = factory.makeAccountCreationViewController(
+            navigationDelegate: self,
+            onDismissed: onDismissed)
         baseViewController = viewController
         navigator.navigate(to: viewController, transition: transition)
     }

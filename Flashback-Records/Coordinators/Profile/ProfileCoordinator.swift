@@ -8,7 +8,10 @@ import NavigateCoordinator
 
 final class ProfileCoordinator: Coordinator {
 
-    typealias Factory = ProfileViewControllerFactory & AccountCreationCoordinatorFactory & AccountLoginCoordinatorFactory
+    typealias Factory =
+        ProfileViewControllerFactory &
+        AccountCreationCoordinatorFactory &
+        AccountLoginCoordinatorFactory
 
     var childCoordinators: [any Coordinator] = []
 
