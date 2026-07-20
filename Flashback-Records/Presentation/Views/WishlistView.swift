@@ -6,24 +6,44 @@
 //
 import SwiftUI
 
-protocol WishlistScreenInterface {
-    associatedtype ViewType: View
-    var wishlistView: ViewType { get }
+class MockWishlistScreenNavigationDelegate: WishlistScreenNavigationDelegate {
+    func searchTapped() {}
 }
 
-struct WishlistView: View, WishlistScreenInterface {
+struct WishlistView: View {
     
-    var wishlistView: some View {
-        self
-    }
+    var viewModel: WishlistViewModel
     
     var body: some View {
-        Text("WISHLIST")
-            .font(.appTitle)
-        Color.yellow
+        VStack(spacing: 12) {
+            Text("WISHLIST")
+                .font(.appTitle)
+            
+            HStack {
+                Text("0 saved records")
+                    .font(.appBody)
+                Spacer()
+            }
+            .padding(.horizontal, 12)
+            
+            Spacer()
+            Image(systemName: "heart")
+                .resizable()
+                .frame(width: 30, height: 30)
+            Text("No items in your wishlist")
+                .font(.appBody)
+            Button {
+                viewModel.searchTapped()
+            } label: {
+                Text("Browse store")
+                    .font(.appBody)
+            }
+
+        }
+        Spacer()
     }
 }
 
 #Preview {
-    WishlistView()
+    WishlistView(viewModel: .init(navigationDelegate: MockWishlistScreenNavigationDelegate()))
 }

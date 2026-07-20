@@ -7,9 +7,6 @@
 
 import NavigateCoordinator
 
-protocol WishlistNavigationDelegate: AnyObject {
-}
-
 final class WishlistCoordinator: Coordinator {
 
     typealias Factory = WishlistViewControllerFactory
@@ -37,6 +34,9 @@ final class WishlistCoordinator: Coordinator {
     
 }
 
-extension WishlistCoordinator: @preconcurrency WishlistNavigationDelegate {
+extension WishlistCoordinator: @preconcurrency WishlistScreenNavigationDelegate {
+    func searchTapped() {
+        
+    }
     
 }

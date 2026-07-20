@@ -6,7 +6,8 @@
 //
 import Foundation
 
-struct User {
+struct User: Identifiable {
     let id: UUID
     let token: String
+    let email: String
 }

@@ -7,7 +7,7 @@
 import SwiftUI
 import NavigateCoordinator
 
-final class WishlistViewController<T: WishlistScreenInterface>: BasicViewController {
+final class WishlistViewController<T: View>: BasicViewController {
 
     private var wishlistView: T
     
@@ -22,7 +22,7 @@ final class WishlistViewController<T: WishlistScreenInterface>: BasicViewControl
     }
     
     private func setupWishlistView() {
-        let controller = UIHostingController(rootView: wishlistView.wishlistView)
+        let controller = UIHostingController(rootView: wishlistView)
             addChild(controller)
             controller.view.translatesAutoresizingMaskIntoConstraints = false
             view.addSubview(controller.view)
