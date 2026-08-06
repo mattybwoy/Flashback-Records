@@ -59,6 +59,10 @@ extension DependencyContainer: TabBarControllerFactory {
                                                     orderNav: orderNav,
                                                     profileNav: profileNav)
 
+        wishlistCoordinator.tabSwitchDelegate = tabBarController
+        searchCoordinator.tabSwitchDelegate = tabBarController
+        orderCoordinator.tabSwitchDelegate = tabBarController
+        profileCoordinator.tabSwitchDelegate = tabBarController
         tabBarController.onDismissed = onDismissed
 
         return tabBarController

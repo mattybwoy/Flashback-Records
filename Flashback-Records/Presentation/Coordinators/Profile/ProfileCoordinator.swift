@@ -19,6 +19,7 @@ final class ProfileCoordinator: Coordinator {
     let factory: Factory
     weak var baseViewController: ViewController?
     unowned var parentCoordinator: Coordinator?
+    weak var tabSwitchDelegate: TabBarNavigationDelegate?
 
     init(navigator: Navigator, factory: Factory) {
         self.navigator = navigator

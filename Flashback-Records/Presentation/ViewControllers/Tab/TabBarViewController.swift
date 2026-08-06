@@ -67,3 +67,18 @@ final class TabBarViewController: BasicTabBarController {
         self.viewControllers = [wishlistNav, searchNav, orderNav, profileNav]
     }
 }
+
+extension TabBarViewController: TabBarNavigationDelegate {
+    func navigateToWishlist() {
+        selectedIndex = 0
+    }
+    func navigateToSearch() {
+        selectedIndex = 1
+    }
+    func navigateToOrders() {
+        selectedIndex = 2
+    }
+    func navigateToProfile() {
+        selectedIndex = 3
+    }
+}

@@ -32,15 +32,3 @@ final class TabBarCoordinator: Coordinator {
     }
 }
 
-extension TabBarCoordinator: @preconcurrency TabBarNavigationDelegate {
-    
-    @MainActor
-    func navigateToSearchScreen() {
-        finish(animated: true)
-    }
-    
-    @MainActor
-    func navigateToProfileScreen() {
-        finish(animated: true)
-    }
-}
