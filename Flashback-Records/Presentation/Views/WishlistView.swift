@@ -24,7 +24,7 @@ struct WishlistView: View {
                     .font(.appBody)
                 Spacer()
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 16)
             
             Spacer()
             Image(systemName: "heart")
@@ -38,7 +38,7 @@ struct WishlistView: View {
                 Text("Browse store")
                     .font(.appBody)
             }
-
+            Spacer()
         }
         Spacer()
     }
