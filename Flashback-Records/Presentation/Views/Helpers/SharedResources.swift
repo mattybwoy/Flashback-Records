@@ -10,6 +10,7 @@ import SwiftUI
 extension Font {
     static let appTitle = Font.custom("JostRoman-Medium", size: 24)
     static let appBody = Font.custom("Jost-Regular", size: 16)
+    static let appSubtitle = Font.custom("Jost-Regular", size: 12)
 }
 
 extension String {

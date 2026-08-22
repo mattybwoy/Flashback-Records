@@ -9,6 +9,7 @@ import SwiftUI
 
 protocol AccountCreationScreenNavigationDelegate: AnyObject {
     func returnToProfileScreen()
+    func navigateToLoginScreen()
 }
 
 @MainActor
@@ -49,6 +50,11 @@ final class AccountCreationViewModel: ObservableObject {
     func didTappedBack() {
         userState = .notLoggedIn
         navigationDelegate.returnToProfileScreen()
+    }
+    
+    func didTappedSignIn() {
+        userState = .notLoggedIn
+        navigationDelegate.navigateToLoginScreen()
     }
     
 }
