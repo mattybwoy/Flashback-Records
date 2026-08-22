@@ -12,7 +12,7 @@ protocol SignUpUseCaseProtocol {
 struct SignUpUseCase {
     let authenticationService: AuthenticationRepository
     
-    func signUp(username: String, password: String) async throws -> Result<User, AuthenticationError> {
+    func signUp(username: String, email: String, password: String) async throws -> Result<User, AuthenticationError> {
         // try await authenticationService.signUp(username: username, password: password)
         return .failure(.invalidCredentials)
     }

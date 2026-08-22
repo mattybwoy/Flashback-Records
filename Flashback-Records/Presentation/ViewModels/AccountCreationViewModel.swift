@@ -29,10 +29,10 @@ final class AccountCreationViewModel: ObservableObject {
         userState = .notLoggedIn
     }
     
-    func signUp(username: String, password: String) async throws -> User? {
+    func signUp(username: String, email: String, password: String) async throws -> User? {
         userState = .loading
         do {
-            let result = try await signUpUseCase.signUp(username: username, password: password)
+            let result = try await signUpUseCase.signUp(username: username, email: email, password: password)
             switch result {
             case .success(let user):
                 userState = .loggedIn(user)
@@ -45,6 +45,7 @@ final class AccountCreationViewModel: ObservableObject {
             userState = .error(error)
             throw error
         }
+        return nil
     }
     
     func didTappedBack() {

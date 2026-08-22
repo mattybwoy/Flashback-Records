@@ -17,6 +17,7 @@ struct AccountCreationView: View {
     @State var name: String = ""
     @State var emailAddress: String = ""
     @State var password: String = ""
+    @State private var alertIsPresented: Bool = false
 
     var body: some View {
         HStack {
@@ -73,6 +74,7 @@ struct AccountCreationView: View {
                         .font(.appBody)
                         .padding(.horizontal, 16)
                     TextField("", text: $emailAddress)
+                        .keyboardType(.emailAddress)
                         .padding(.horizontal, 12)
                         .padding(.vertical, 8)
                         .overlay(RoundedRectangle(cornerRadius: 4).stroke(Color.black))
@@ -99,7 +101,16 @@ struct AccountCreationView: View {
                 .padding(.vertical, 16)
             
             Button {
-                viewModel.didTappedSignIn()
+                if name.isEmpty || emailAddress.isEmpty || password.isEmpty {
+                    alertIsPresented.toggle()
+                }
+                Task {
+                    do {
+                        try await viewModel.signUp(username: $name.wrappedValue, email: $emailAddress.wrappedValue, password: $password.wrappedValue)
+                    } catch {
+                        alertIsPresented = true
+                    }
+                }
             } label: {
                 Text("Create Account")
                     .font(.appBody)
@@ -108,6 +119,13 @@ struct AccountCreationView: View {
             .padding(16)
             .background(Color.black)
             .cornerRadius(4)
+            .alert("Error", isPresented: $alertIsPresented) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                if name.isEmpty || emailAddress.isEmpty || password.isEmpty {
+                    Text("Please fill in all required fields")
+                }
+            }
         }
         .padding(16)
         
