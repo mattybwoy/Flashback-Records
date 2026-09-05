@@ -90,4 +90,30 @@ final class ProfileCoordinatorTests: XCTestCase {
         XCTAssertEqual(navigationController.viewControllers.count, 1)
         XCTAssertTrue(navigationController.topViewController is ProfileViewController<ProfileView>)
     }
+    
+    func testNavigateToAccountCreationFromLoginScreen() {
+        let (coordinator, navigationController) = makeSut()
+        coordinator.start(transition: .push(animated: false), onDismissed: nil)
+        coordinator.signinTapped()
+
+        let child = coordinator.childCoordinators.first as? AccountLoginCoordinator
+        child?.navigateToAccountCreationScreen()
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.05))
+
+        XCTAssertEqual(navigationController.viewControllers.count, 2)
+        XCTAssertTrue(navigationController.topViewController is AccountCreationViewController<AccountCreationView>)
+    }
+    
+    func testNavigateToLoginScreenFromAccountCreation() {
+        let (coordinator, navigationController) = makeSut()
+        coordinator.start(transition: .push(animated: false), onDismissed: nil)
+        coordinator.signinTapped()
+
+        let child = coordinator.childCoordinators.first as? AccountCreationCoordinator
+        child?.navigateToLoginScreen()
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.05))
+
+        XCTAssertEqual(navigationController.viewControllers.count, 2)
+        XCTAssertTrue(navigationController.topViewController is AccountLoginViewController<AccountLoginView>)
+    }
 }

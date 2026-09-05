@@ -7,11 +7,12 @@
 @testable import Flashback_Records
 
 final class AuthenticationMock: AuthenticationRepository {
-    func login(username: String, password: String) async throws -> Flashback_Records.User? {
-        return User(id: .init(), token: "999")
+    func signUp(username: String, email: String, password: String) async throws -> Flashback_Records.User? {
+        return User(id: .init(), token: "999", email: email)
     }
     
-    func signUp(username: String, password: String) async throws -> Flashback_Records.User? {
-        return User(id: .init(), token: "123")
+    func login(email: String, password: String) async throws -> Flashback_Records.User? {
+        return User(id: .init(), token: "999", email: email)
     }
+    
 }

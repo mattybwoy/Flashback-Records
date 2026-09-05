@@ -7,7 +7,7 @@
 
 final class AuthenticationRepositoryImpl: AuthenticationRepository {
     
-    func login(username: String, password: String) async throws -> User? {
+    func login(email username: String, password: String) async throws -> User? {
         print("logged in")
         return nil
     }

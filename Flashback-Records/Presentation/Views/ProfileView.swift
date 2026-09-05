@@ -8,7 +8,7 @@
 import SwiftUI
 
 class MockAuthenticationRepository: AuthenticationRepository {
-    func login(username: String, password: String) async throws -> User? { nil }
+    func login(email username: String, password: String) async throws -> User? { nil }
     func signUp(username: String, email: String, password: String) async throws -> User? { nil }
 }
 

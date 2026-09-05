@@ -6,6 +6,6 @@
 //
 
 protocol AuthenticationRepository {
-    func login(username: String, password: String) async throws -> User?
+    func login(email: String, password: String) async throws -> User?
     func signUp(username: String, email: String, password: String) async throws -> User?
 }
