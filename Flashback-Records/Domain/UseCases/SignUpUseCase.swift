@@ -13,7 +13,11 @@ struct SignUpUseCase {
     let authenticationService: AuthenticationRepository
     
     func signUp(username: String, email: String, password: String) async throws -> Result<User, AuthenticationError> {
-        // try await authenticationService.signUp(username: username, password: password)
+        do {
+            try await authenticationService.signUp(username: username, email: email, password: password)
+        } catch {
+            return .failure(.invalidCredentials)
+        }
         return .failure(.invalidCredentials)
     }
 }

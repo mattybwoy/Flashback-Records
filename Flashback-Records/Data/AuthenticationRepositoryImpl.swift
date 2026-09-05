@@ -12,7 +12,7 @@ final class AuthenticationRepositoryImpl: AuthenticationRepository {
         return nil
     }
     
-    func signUp(username: String, password: String) async throws -> User? {
+    func signUp(username: String, email: String, password: String) async throws -> User? {
         print("signed up")
         return nil
     }

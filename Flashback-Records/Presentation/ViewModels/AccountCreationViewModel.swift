@@ -45,7 +45,6 @@ final class AccountCreationViewModel: ObservableObject {
             userState = .error(error)
             throw error
         }
-        return nil
     }
     
     func didTappedBack() {

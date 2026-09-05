@@ -9,7 +9,7 @@ import NavigateCoordinator
 
 final class AccountLoginCoordinator: Coordinator {
     
-    typealias Factory = AccountLoginViewControllerFactory
+    typealias Factory = AccountLoginViewControllerFactory & AccountCreationCoordinatorFactory
     
     var childCoordinators: [any Coordinator] = []
     
@@ -38,6 +38,13 @@ extension AccountLoginCoordinator: AccountLoginScreenNavigationDelegate {
     @MainActor
     func returnToProfileScreen() {
         finish(animated: true)
+    }
+    
+    @MainActor
+    func navigateToAccountCreationScreen() {
+        finish(animated: false)
+        let accountCreationCoordinator = factory.makeAccountCreationCoordinator(navigator: navigator)
+        parentCoordinator?.startChild(accountCreationCoordinator, transition: .push(animated: true), onDismissed: nil)
     }
     
 }

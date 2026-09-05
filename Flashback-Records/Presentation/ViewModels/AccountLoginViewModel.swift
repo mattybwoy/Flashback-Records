@@ -9,6 +9,7 @@ import SwiftUI
 
 protocol AccountLoginScreenNavigationDelegate: AnyObject {
     func returnToProfileScreen()
+    func navigateToAccountCreationScreen()
 }
 
 @MainActor
@@ -28,10 +29,10 @@ final class AccountLoginViewModel: ObservableObject {
         userState = .notLoggedIn
     }
     
-    func login(username: String, password: String) async throws -> User? {
+    func login(email: String, password: String) async throws -> User? {
         userState = .loading
         do {
-            let result = try await loginUseCase.login(username: username, password: password)
+            let result = try await loginUseCase.login(email: email, password: password)
             switch result {
             case .success(let user):
                 userState = .loggedIn(user)
@@ -49,6 +50,11 @@ final class AccountLoginViewModel: ObservableObject {
     func didTappedBack() {
         userState = .notLoggedIn
         navigationDelegate.returnToProfileScreen()
+    }
+    
+    func didTappedAccountCreationScreen() {
+        userState = .notLoggedIn
+        navigationDelegate.navigateToAccountCreationScreen()
     }
     
 }

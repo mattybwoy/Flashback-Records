@@ -36,15 +36,15 @@ struct AccountCreationView: View {
         }
         .padding(.horizontal, 16)
         
-        HStack {
+        HStack(spacing: 0) {
             Spacer()
             Text("Already a member?")
-                .font(.appBody)
+                .font(.appSubtitle)
             Button {
                 viewModel.didTappedSignIn()
             } label: {
                 Text("Log in")
-                    .font(.appBody)
+                    .font(.appSubtitle)
                     .foregroundStyle(Color.primary)
                     .underline(true)
             }
