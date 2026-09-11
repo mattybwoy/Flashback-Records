@@ -8,11 +8,11 @@
 
 final class AuthenticationMock: AuthenticationRepository {
     func signUp(username: String, email: String, password: String) async throws -> Flashback_Records.User? {
-        return User(id: .init(), token: "999", email: email)
+        return User(id: .init(), token: "999", email: email, username: username)
     }
     
     func login(email: String, password: String) async throws -> Flashback_Records.User? {
-        return User(id: .init(), token: "999", email: email)
+        return User(id: .init(), token: "999", email: email, username: "John")
     }
     
 }

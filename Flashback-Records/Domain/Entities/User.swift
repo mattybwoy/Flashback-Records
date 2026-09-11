@@ -10,4 +10,5 @@ struct User: Identifiable {
     let id: UUID
     let token: String
     let email: String
+    let username: String
 }

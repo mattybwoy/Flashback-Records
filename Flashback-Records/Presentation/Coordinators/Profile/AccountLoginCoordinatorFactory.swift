@@ -11,8 +11,8 @@ protocol AccountLoginCoordinatorFactory {
     func makeAccountLoginCoordinator(navigator: Navigator) -> Coordinator
 }
 
-extension DependencyContainer: AccountLoginCoordinatorFactory {
-    
+extension ProfileDependencyContainer: AccountLoginCoordinatorFactory {
+
     func makeAccountLoginCoordinator(navigator: Navigator) -> Coordinator {
         AccountLoginCoordinator(navigator: navigator, factory: self)
     }

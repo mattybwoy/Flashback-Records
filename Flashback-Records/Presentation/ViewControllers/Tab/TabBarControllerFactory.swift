@@ -47,8 +47,9 @@ extension DependencyContainer: TabBarControllerFactory {
 
         let profileNav = BasicNavigationController()
         let profileNavigator = BasicNavigator(navigationController: profileNav)
-        let profileCoordinator = ProfileCoordinator(navigator: profileNavigator, factory: self)
-        let profileVC = makeProfileViewController(
+        let profileContainer = ProfileDependencyContainer()
+        let profileCoordinator = ProfileCoordinator(navigator: profileNavigator, factory: profileContainer)
+        let profileVC = profileContainer.makeProfileViewController(
             navigationDelegate: profileCoordinator,
             onDismissed: nil)
         profileNav.navigationBar.isHidden = true
