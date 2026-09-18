@@ -14,7 +14,7 @@ final class NetworkClient: NetworkService {
     let baseURL: URL
     let session: URLSession
     
-    init(baseURL: URL = URL(string: "https://api.discogs.com")!, 
+    init(baseURL: URL = URL(string: "https://api.discogs.com")!,
          session: URLSession = .shared) {
         self.baseURL = baseURL
         self.session = session
