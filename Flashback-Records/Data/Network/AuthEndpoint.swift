@@ -9,52 +9,57 @@ import Foundation
 
 /// Endpoints for authentication-related API calls
 enum AuthEndpoint: Endpoint {
-    case login(email: String, password: String)
-    case signUp(username: String, email: String, password: String)
+    case requestToken(callbackURL: String)
+    case accessToken(token: String, verifier: String)
     case logout
-    case refreshToken
+    case identity
     
     var path: String {
         switch self {
-        case .login:
-            return "/auth/login"
-        case .signUp:
-            return "/auth/signup"
+        case .requestToken:
+            return "/oauth/request_token"
+        case .accessToken:
+            return "/oauth/access_token"
         case .logout:
-            return "/auth/logout"
-        case .refreshToken:
-            return "/auth/refresh"
+            return "/oauth/logout"
+        case .identity:
+            return "/oauth/identity"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .login, .signUp, .logout, .refreshToken:
+        case .requestToken:
+            return .get
+        case .accessToken:
             return .post
+        case .logout:
+            return .post
+        case .identity:
+            return .get
         }
     }
     
     var headers: [String: String]? {
-        return ["Content-Type": "application/json"]
+        // OAuth headers will be added by the NetworkClient/OAuthService
+        // based on the consumer key, token, and signature
+        return ["Content-Type": "application/x-www-form-urlencoded"]
     }
     
     var body: Data? {
-        let encoder = JSONEncoder()
-        
         switch self {
-        case .login(let email, let password):
-            let loginData = ["email": email, "password": password]
-            return try? encoder.encode(loginData)
+        case .requestToken(let callbackURL):
+            // OAuth callback is typically sent as a query parameter, not body
+            // For Discogs, this may be included in the OAuth signature
+            // Leaving body as nil for GET request
+            return nil
             
-        case .signUp(let username, let email, let password):
-            let signUpData = [
-                "username": username,
-                "email": email,
-                "password": password
-            ]
-            return try? encoder.encode(signUpData)
+        case .accessToken(let token, let verifier):
+            // Token and verifier for OAuth access token exchange
+            let bodyString = "oauth_token=\(token)&oauth_verifier=\(verifier)"
+            return bodyString.data(using: .utf8)
             
-        case .logout, .refreshToken:
+        case .identity, .logout:
             return nil
         }
     }
