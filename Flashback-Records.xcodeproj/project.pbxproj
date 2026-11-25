@@ -14,7 +14,6 @@
 		0AB3E24030B4358F00AEEE2D /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3E23F30B4358F00AEEE2D /* KeychainManager.swift */; };
 		0AB3E24230B4359600AEEE2D /* DiscogsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AB3E24130B4359600AEEE2D /* DiscogsConfig.swift */; };
 		0AB3E24730B4365E00AEEE2D /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0AB3E24630B4365E00AEEE2D /* OAuthSwift */; };
-		0AB3E24B30B5851500AEEE2D /* Secrets.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 0AB3E24A30B5851500AEEE2D /* Secrets.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,24 +42,35 @@
 		0AB3E23D30B4358300AEEE2D /* OAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthService.swift; sourceTree = "<group>"; };
 		0AB3E23F30B4358F00AEEE2D /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		0AB3E24130B4359600AEEE2D /* DiscogsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscogsConfig.swift; sourceTree = "<group>"; };
-		0AB3E24A30B5851500AEEE2D /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
 		0A8048BC2D7372A100264228 /* Exceptions for "Flashback-Records" folder in "Flashback-Records" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Data/Secrets.xcconfig,
 				Info.plist,
 			);
 			target = 0A8048902D7372A000264228 /* Flashback-Records */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		0AB3E25230B6DBCC00AEEE2D /* Exceptions for "Flashback-Records" folder in "Compile Sources" phase from "Flashback-Records" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 0A80488D2D7372A000264228 /* Sources */;
+			membershipExceptions = (
+				Data/Secrets.xcconfig,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0A8048932D7372A000264228 /* Flashback-Records */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				0A8048BC2D7372A100264228 /* Exceptions for "Flashback-Records" folder in "Flashback-Records" target */,
+				0AB3E25230B6DBCC00AEEE2D /* Exceptions for "Flashback-Records" folder in "Compile Sources" phase from "Flashback-Records" target */,
 			);
 			path = "Flashback-Records";
 			sourceTree = "<group>";
@@ -115,7 +125,6 @@
 				0AB3E23D30B4358300AEEE2D /* OAuthService.swift */,
 				0AB3E23F30B4358F00AEEE2D /* KeychainManager.swift */,
 				0AB3E24130B4359600AEEE2D /* DiscogsConfig.swift */,
-				0AB3E24A30B5851500AEEE2D /* Secrets.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,7 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0AB3E24B30B5851500AEEE2D /* Secrets.xcconfig in Resources */,
 				0AA8B2112FD430A2008E63A5 /* Jost-Italic.ttf in Resources */,
 				0AA8B2122FD430A2008E63A5 /* Jost.ttf in Resources */,
 			);

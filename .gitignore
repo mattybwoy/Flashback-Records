@@ -45,3 +45,4 @@ DiscogsConfig.swift
 # Keep the templates
 !Secrets.xcconfig.template
 !DiscogsConfig.swift.template
+Secrets.xcconfig
