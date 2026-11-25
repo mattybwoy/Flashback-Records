@@ -8,3 +8,40 @@ xcuserdata/
 
 # Secrets
 Flashback-Records/Data/Secrets.swift
+# Xcode
+.DS_Store
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+*.xcscmblueprint
+
+# CocoaPods
+Pods/
+
+# Carthage
+Carthage/Build/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# API Secrets - DO NOT COMMIT
+Secrets.xcconfig
+DiscogsConfig.swift
+
+# Keep the templates
+!Secrets.xcconfig.template
+!DiscogsConfig.swift.template

@@ -5,8 +5,16 @@
 //  Created by Matthew Lock on 03/11/2026.
 //
 
-struct OAuthCredentials {
+import Foundation
+
+/// Model for storing OAuth credentials
+struct OAuthCredentials: Codable {
     let consumerKey: String
     let consumerSecret: String
-    var accessToken: OAuthToken?
+    let oauthToken: String
+    let oauthTokenSecret: String
+    
+    var isValid: Bool {
+        return !oauthToken.isEmpty && !oauthTokenSecret.isEmpty
+    }
 }
